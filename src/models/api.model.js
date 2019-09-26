@@ -5,7 +5,7 @@ import Device from './device.model';
 export const AUTH_METHODS = {
   OPEN: 'open',
   API_KEY: 'api_key',
-  CUSTOM_HEADER: 'custom_header',
+  CUSTOM_HEADERS: 'custom_headers',
 };
 
 export const PATH_TYPES = {
@@ -65,16 +65,22 @@ export default class Api {
     url = '',
     paths = defaultPathValue,
     dataPath = '',
+    customHeaders = {},
+    requestMethod = 'get',
+    requestData = '',
   }) {
     this.name = name;
     this.authMethod = authMethod;
-    this.client = new HttpService(url);
+    this.client = new HttpService(url, customHeaders);
     this.paths = paths;
     this.dataPath = dataPath;
+    this.requestMethod = requestMethod;
+    this.requestData = requestData;
   }
 
   async invoke() {
-    const { data: response } = await this.client.get();
+    const { data: response } = this.requestMethod === 'get' ? await this.client.get() : await this.client.post(this.requestData);
+
 
     const data = Array.isArray(response)
       ? response

@@ -1,8 +1,9 @@
 import Axios from 'axios';
 
 export default class HttpService {
-  constructor(url) {
-    this.client = Axios.create({ baseURL: url });
+  constructor(url, headers) {
+    this.client = Axios.create({ baseURL: url, headers });
+    this.client.defaults.headers.common = { ...this.client.defaults.headers.common, ...headers };
   }
 
   get url() {
@@ -18,6 +19,7 @@ export default class HttpService {
   }
 
   async post(data) {
+    console.log(data);
     return this.client.post(this.url, data);
   }
 
