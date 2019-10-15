@@ -8,7 +8,7 @@
     "dev": "nodemon --exec babel-node app.js",
     "prestart": "npm run build",
     "start": "node ./lib/app.js",
-    "build": "rm -rf lib && babel app.js --out-dir lib && babel src --out-dir lib/src",
+    "build": "rm -rf lib && babel app.js --out-dir lib && babel src --out-dir lib/src && cp -r public lib/public",
     "build:all": "cd frontend && npm run build && cd .. && npm run build"
   },
   "keywords": [
