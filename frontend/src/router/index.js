@@ -24,5 +24,10 @@ export default new Router({
       name: 'api-detail',
       component: () => import(/* webpackChunkName: "api-detail" */ '../views/ApiDetail.vue'),
     },
+    {
+      path: '/create',
+      name: 'create',
+      component: () => import(/* webpackChunkName: "api-create" */ '../views/ApiCreate.vue'),
+    },
   ],
 });

@@ -8,14 +8,17 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    apis: [
-      { name: 'Hello' },
-      { name: 'world' },
-    ],
+    apis: [],
+    selected_api_data: null,
+    all_data: {},
   },
   mutations,
   actions,
   getters,
 });
 
-export { mutations as mutationTypes, actions as actionTypes, getters as getterTypes } from './types';
+export {
+  mutations as mutationTypes,
+  actions as actionTypes,
+  getters as getterTypes,
+} from './types';
