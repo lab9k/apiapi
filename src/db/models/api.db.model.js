@@ -91,7 +91,14 @@ ApiSchema.methods.invoke = async function invokeApi() {
     });
   });
   const apiResponse = slice(allDevices, 0, 5);
-  await redisClient.setAsync(this.name, JSON.stringify(apiResponse));
+
+  // store apiResponse in cache and set expiration to 1 hour
+  await redisClient.setAsync(
+    this.name,
+    JSON.stringify(apiResponse),
+    'EX',
+    1 * 60 * 60,
+  );
   return apiResponse;
 };
 const ApiModel = mongoose.model('Api', ApiSchema);
