@@ -71,6 +71,8 @@ export default class Api {
   }) {
     this.name = name;
     this.authMethod = authMethod;
+    // eslint-disable-next-line no-underscore-dangle
+    this.url = url;
     this.client = new HttpService(url, customHeaders);
     this.paths = paths;
     this.dataPath = dataPath;
@@ -78,9 +80,19 @@ export default class Api {
     this.requestData = requestData;
   }
 
-  async invoke() {
-    const { data: response } = this.requestMethod === 'get' ? await this.client.get() : await this.client.post(this.requestData);
+  async raw() {
+    const { data: response } =
+      this.requestMethod === 'get'
+        ? await this.client.get()
+        : await this.client.post(this.requestData);
+    return response;
+  }
 
+  async invoke() {
+    const { data: response } =
+      this.requestMethod === 'get'
+        ? await this.client.get()
+        : await this.client.post(this.requestData);
 
     const data = Array.isArray(response)
       ? response
@@ -98,23 +110,24 @@ export default class Api {
       const categories = this.searchProp(element, 'categories');
 
       return new Device({
-        id, organization, reference, longitude, latitude, application, meta, types, categories,
+        id,
+        organization,
+        reference,
+        longitude,
+        latitude,
+        application,
+        meta,
+        types,
+        categories,
       });
     });
     return slice(allDevices, 0, 5);
   }
 
-  set url(value) {
-    this.client = new HttpService(value);
-  }
-
-  get url() {
-    return this.client.url;
-  }
-
   searchProp(element, prop) {
     if (!this.paths[prop]) return undefined;
     return this.paths[prop].type === PATH_TYPES.CONSTANT
-      ? this.paths[prop].value : getProp(element, this.paths[prop].value);
+      ? this.paths[prop].value
+      : getProp(element, this.paths[prop].value);
   }
 }
