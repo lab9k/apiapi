@@ -5,7 +5,11 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon --exec babel-node app.js"
+    "dev": "nodemon --exec babel-node app.js",
+    "prestart": "npm run build",
+    "start": "node ./lib/app.js",
+    "build": "rm -rf lib && babel app.js --out-dir lib && babel src --out-dir lib/src",
+    "build:all": "cd frontend && npm run build && cd .. && npm run build"
   },
   "keywords": [
     "api",
@@ -15,6 +19,7 @@
   "author": "Jefwillems <willems.jef@outlook.com>",
   "license": "ISC",
   "dependencies": {
+    "@babel/polyfill": "^7.6.0",
     "@koa/cors": "^3.0.0",
     "axios": "^0.19.0",
     "koa": "^2.10.0",

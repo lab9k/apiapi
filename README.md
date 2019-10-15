@@ -4,8 +4,9 @@ This is some sort of an api manager, which dynamically combines data from differ
 
 ## TODO
 
-* add crud operations in backend for stored api management
-* create system for configurable data return. (now it only returns "iot devices")
-* create an admin panel where you can manage api's.
-* add configurable auth methods for each api
-* add bcrypt encryption for stored api keys/uname+pass/etc (when auth methods are implemented)
+- add crud operations in backend for stored api management
+- create system for configurable data return. (now it only returns "iot devices")
+- create an admin panel where you can manage api's.
+- add configurable auth methods for each api
+- add bcrypt encryption for stored api keys/uname+pass/etc (when auth methods are implemented)
+- add REDIS caching per api
