@@ -4,6 +4,7 @@ export const actions = {
   INVOKE_ALL: 'invoke_all',
   CREATE_API: 'create_api',
   DELETE_API: 'delete_api',
+  FLUSH_CACHE: 'flush_cache',
 };
 export const mutations = {
   UPDATE_API_LIST: 'update_api_list',
