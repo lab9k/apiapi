@@ -13,4 +13,7 @@ export default {
   [mutations.UPDATE_ALL_API_DATA](state, data) {
     state.all_data = data;
   },
+  [mutations.DELETE_LOCAL_API](state, name) {
+    state.apis = state.apis.filter((el) => el.name !== name);
+  },
 };

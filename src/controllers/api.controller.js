@@ -7,11 +7,21 @@ export default {
     const apis = await ApiModel.getAll();
     return apis;
   },
-  async create(ctx) {
-    const api = new Api(ctx.request.body);
+  async create(body) {
+    const api = new Api(body);
     const storedApi = new ApiModel(api);
     await ApiModel.addApi(storedApi);
-    ctx.body = { ...api };
+    return { ...api };
+  },
+  async find(name) {
+    const api = await ApiModel.find({ name });
+    return api;
+  },
+  async update(name, body) {
+    return ApiModel.replaceOne({ name }, body);
+  },
+  async delete(name) {
+    return ApiModel.removeApi(name);
   },
   async invokeAll() {
     const apis = await this.findAll();

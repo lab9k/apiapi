@@ -38,17 +38,35 @@ router.get('/api/devices/:name', async (ctx) => {
   }
 });
 
-router.get('/api', async (ctx) => {
-  ctx.body = await ApiController.findAll();
-});
-
 router.get('/api/invoke', async (ctx) => {
   const response = await ApiController.invokeAll();
   ctx.body = response;
 });
 
+// find all apis
+router.get('/api', async (ctx) => {
+  ctx.body = await ApiController.findAll();
+});
+
+// create api
 router.post('/api', async (ctx) => {
-  await ApiController.create(ctx);
+  const res = await ApiController.create(ctx.request.body);
+  ctx.body = res;
+});
+
+// get single api
+router.get('/api/:name', async (ctx) => {
+  ctx.body = await ApiController.find(ctx.params.name);
+});
+
+// update api
+router.put('/api/:name', async (ctx) => {
+  ctx.body = await ApiController.update(ctx.params.name, ctx.request.body);
+});
+
+// delete api
+router.del('/api/:name', async (ctx) => {
+  ctx.body = await ApiController.delete(ctx.params.name);
 });
 
 router.all('*', async (ctx) => {

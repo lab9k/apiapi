@@ -3,12 +3,14 @@ export const actions = {
   FETCH_API_DATA: 'api_data',
   INVOKE_ALL: 'invoke_all',
   CREATE_API: 'create_api',
+  DELETE_API: 'delete_api',
 };
 export const mutations = {
   UPDATE_API_LIST: 'update_api_list',
   UPDATE_SELECTED_API_DATA: 'update_selected_data',
   CLEAR_SELECTION: 'clear_selection',
   UPDATE_ALL_API_DATA: 'update_all_data',
+  DELETE_LOCAL_API: 'delete_local_api',
 };
 export const getters = {
   APIS: 'apis',
