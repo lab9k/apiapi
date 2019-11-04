@@ -105,6 +105,6 @@ const ApiModel = mongoose.model('Api', ApiSchema);
 
 ApiModel.getAll = () => ApiModel.find({});
 ApiModel.addApi = (api) => api.save();
-ApiModel.removeApi = (name) => ApiModel.remove({ name });
+ApiModel.removeApi = (name) => ApiModel.deleteOne({ name });
 
 export default ApiModel;

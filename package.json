@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon --exec babel-node app.js",
+    "dev": "nodemon --exec babel-node app.js --ignore frontend/",
     "prestart": "npm run build",
     "start": "node ./lib/app.js",
     "build": "rm -rf lib && babel app.js --out-dir lib && babel src --out-dir lib/src && cp -r public lib/public",
