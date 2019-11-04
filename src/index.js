@@ -8,6 +8,7 @@ import bodyParser from 'koa-bodyparser';
 import testApis from './test/test_apis';
 import { connectToDB } from './db/index';
 import ApiController from './controllers/api.controller';
+import RedisService from './services/redis.service';
 
 const appDir = path.dirname(require.main.filename);
 
@@ -46,6 +47,15 @@ router.get('/api/invoke', async (ctx) => {
 // find all apis
 router.get('/api', async (ctx) => {
   ctx.body = await ApiController.findAll();
+});
+
+router.post('/api/flush', async (ctx) => {
+  try {
+    await RedisService.flushDb();
+    ctx.body = { ok: 1 };
+  } catch (error) {
+    ctx.body = { error: "Couldn't flush db", ok: 0 };
+  }
 });
 
 // create api
