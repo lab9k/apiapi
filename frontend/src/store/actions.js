@@ -29,7 +29,6 @@ export default {
   async [actions.CREATE_API](undef, api) {
     try {
       const url = 'http://localhost:3000/api';
-      console.log(api);
       const response = await fetch(url, {
         method: 'POST',
         body: JSON.stringify(api),
@@ -42,6 +41,20 @@ export default {
       return data;
     } catch (error) {
       return null;
+    }
+  },
+  async [actions.DELETE_API]({ commit }, { name }) {
+    try {
+      const url = `http://localhost:3000/api/${name}`;
+      const response = await fetch(url, { method: 'DELETE' });
+      const json = await response.json();
+      if (json.ok === 1) {
+        commit(mutations.DELETE_LOCAL_API, name);
+      } else {
+        throw new Error(json);
+      }
+    } catch (error) {
+      console.error(error);
     }
   },
 };

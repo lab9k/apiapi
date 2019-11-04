@@ -10,21 +10,7 @@
         v-for="api in apis"
         :key="api.name"
       >
-        <v-card>
-          <v-card-text>
-            <p class="display-1 text--primary">
-              {{ api.name }}
-            </p>
-            <p>adjective</p>
-            <div class="text--primary">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium, labore
-              perferendis?
-            </div>
-          </v-card-text>
-          <v-card-actions>
-            <v-btn :to="{ name: 'api-detail', params: { name: api.name } }">details</v-btn>
-          </v-card-actions>
-        </v-card>
+        <api-card :api="api" />
       </v-col>
       <v-col
         lg="4"
@@ -51,9 +37,11 @@
 <script>
 import { mapGetters } from 'vuex';
 import { actionTypes } from '../store';
+import ApiCard from '@/components/ApiCard.vue';
 
 export default {
   name: 'ApiList',
+  components: { ApiCard },
   computed: {
     ...mapGetters(['apis']),
   },
