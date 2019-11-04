@@ -57,4 +57,17 @@ export default {
       console.error(error);
     }
   },
+  async [actions.FLUSH_CACHE]() {
+    try {
+      const url = 'http://localhost:3000/api/flush';
+      const response = await fetch(url, { method: 'POST' });
+      const json = await response.json();
+      if (json.ok === 1) {
+        return true;
+      }
+      return false;
+    } catch (error) {
+      return false;
+    }
+  },
 };

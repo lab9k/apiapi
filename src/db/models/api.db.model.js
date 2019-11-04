@@ -1,17 +1,8 @@
 import mongoose from 'mongoose';
 import { get as getProp, slice } from 'lodash';
-import redis from 'redis';
-import bluebird from 'bluebird';
 import HttpService from '../../services/http.service';
 import Device from '../../models/device.model';
-
-bluebird.promisifyAll(redis.RedisClient.prototype);
-bluebird.promisifyAll(redis.Multi.prototype);
-
-const redisClient = redis.createClient({
-  port: process.env.REDIS_PORT || 6379,
-  host: process.env.REDIS_HOST || '127.0.0.1',
-});
+import RedisService from '../../services/redis.service';
 
 export const PATH_TYPES = {
   PATH: 'path',
@@ -48,7 +39,7 @@ const ApiSchema = mongoose.Schema({
   },
 });
 ApiSchema.methods.invoke = async function invokeApi() {
-  const cacheResponse = await redisClient.getAsync(this.name);
+  const cacheResponse = await RedisService.getData(this.name);
   if (cacheResponse) {
     return JSON.parse(cacheResponse);
   }
@@ -92,13 +83,7 @@ ApiSchema.methods.invoke = async function invokeApi() {
   });
   const apiResponse = slice(allDevices, 0, 5);
 
-  // store apiResponse in cache and set expiration to 1 hour
-  await redisClient.setAsync(
-    this.name,
-    JSON.stringify(apiResponse),
-    'EX',
-    1 * 60 * 60,
-  );
+  await RedisService.setData(this.name, JSON.stringify(apiResponse));
   return apiResponse;
 };
 const ApiModel = mongoose.model('Api', ApiSchema);

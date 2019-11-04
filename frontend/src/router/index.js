@@ -29,5 +29,11 @@ export default new Router({
       name: 'create',
       component: () => import(/* webpackChunkName: "api-create" */ '../views/ApiCreate.vue'),
     },
+    {
+      path: '/manage',
+      name: 'manage',
+      component: () =>
+        import(/* webpackChunkName: "server-management" */ '../views/ServerManagement.vue'),
+    },
   ],
 });
