@@ -14,4 +14,5 @@ export const getters = {
   APIS: 'apis',
   SELECTED_API_DATA: 'selected_api_data',
   ALL_DATA: 'all_data',
+  SELECTED_API_RAW_DATA: 'selected_raw',
 };

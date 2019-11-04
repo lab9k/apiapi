@@ -74,6 +74,21 @@
       ></v-progress-circular>
 
     </v-form>
+    <v-container
+      fluid
+      v-if="validated"
+    >
+      <v-switch
+        v-model="basePathSelectorVisible"
+        :label="'Set base path'"
+      />
+
+      <v-text-field
+        v-if="basePathSelectorVisible"
+        @change="setBasePath"
+      />
+    </v-container>
+
     <device-stepper
       v-if="validated"
       @complete="pathsCompleted"
@@ -95,15 +110,21 @@
 </template>
 <script>
 // import ConstOrValueInput from '../components/ConstOrValueInput.vue';
+import { mapGetters } from 'vuex';
+import { get as getProp } from 'lodash';
 import CustomHeaderInput from '../components/CustomHeaderInput.vue';
 import ConfirmCreationDialog from '../components/ConfirmCreationDialog.vue';
 import DeviceStepper from '../components/DeviceStepper.vue';
 import { mutationTypes } from '../store';
-import { actions } from '../store/types';
+import { actions, getters } from '../store/types';
 
 export default {
   name: 'ApiCreate',
-  components: { CustomHeaderInput, DeviceStepper, ConfirmCreationDialog },
+  components: {
+    CustomHeaderInput,
+    DeviceStepper,
+    ConfirmCreationDialog,
+  },
   data() {
     return {
       valid: true,
@@ -124,17 +145,24 @@ export default {
       loadingData: false,
       devicePaths: false,
       dialogVisible: false,
+      basePath: '',
+      basePathSelectorVisible: false,
     };
   },
   computed: {
     apiData() {
-      return {
+      const data = {
         paths: this.devicePaths,
         url: this.url,
         name: this.name,
         authMethod: this.authMethod,
       };
+      if (this.basePathSelectorVisible) {
+        data.dataPath = this.basePath;
+      }
+      return data;
     },
+    ...mapGetters([getters.SELECTED_API_RAW_DATA, getters.SELECTED_API_DATA]),
   },
   methods: {
     reset() {
@@ -177,6 +205,16 @@ export default {
           this.dialogVisible = false;
           this.$router.push({ name: 'api' });
         });
+      }
+    },
+    setBasePath(path) {
+      if (this.basePath !== path) {
+        this.basePath = path;
+        const currentData = this.selected_api_data;
+        console.log(currentData);
+        const newData = getProp(currentData, path);
+        console.log(newData);
+        this.$store.commit(mutationTypes.UPDATE_SELECTED_API_DATA, newData);
       }
     },
   },
