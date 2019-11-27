@@ -1,12 +1,12 @@
 const mongoose = require('mongoose')
 mongoose.Promise = global.Promise
 
-export const connectToDb = (url) => {
+const connectToDb = (url) => {
   if (!url) {
     throw new Error('Mongodb database url was not defined')
   }
 
-  mongoose.connect(url, {
+  return mongoose.connect(url, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true
@@ -16,3 +16,5 @@ export const connectToDb = (url) => {
     console.error(err)
   })
 }
+
+module.exports.connectToDb = connectToDb

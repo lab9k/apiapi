@@ -9,6 +9,7 @@ const app = express()
 const config = require('../nuxt.config.js')
 config.dev = process.env.NODE_ENV !== 'production'
 
+const { connectToDb } = require('./db')
 const routes = require('./routes')
 
 async function start () {
@@ -28,6 +29,12 @@ async function start () {
   // Give nuxt middleware to express
   app.use(bodyParser.urlencoded({ extended: true }))
   app.use(bodyParser.json())
+  app.use((req, res, next) => {
+    const url = process.env.MONGO_DB_URL || 'mongodb://127.0.0.1:27017/apiapi'
+    connectToDb(url).then((connected) => {
+      next()
+    }).catch((err) => { return err })
+  })
   app.use('/api', routes)
   app.use(nuxt.render)
 
