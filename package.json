@@ -19,7 +19,8 @@
     "cross-env": "^5.2.0",
     "express": "^4.16.4",
     "mongoose": "^5.7.12",
-    "nuxt": "^2.0.0"
+    "nuxt": "^2.0.0",
+    "vue-i18n": "^8.15.1"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^1.0.1",
