@@ -9,7 +9,6 @@ This is some sort of an api manager, which dynamically combines data from differ
 - add bcrypt encryption for stored api keys/uname+pass/etc (when auth methods are implemented)
 - add support for data enriching. aka. adding custom fields with constant/path values. (for example: link to data processing statement)
 
-
 ## DOING
 
 - add crud operations in backend for stored api management
