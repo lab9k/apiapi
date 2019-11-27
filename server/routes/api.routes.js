@@ -1,22 +1,16 @@
 const express = require('express')
+const ApiController = require('../controllers/api.controller')
 
 const router = express.Router()
 
-router.get('/', (req, res) => {
-  // TODO: find all apis
-  res.send('Hello World')
-})
+router.get('/', ApiController.findAll)
 
-router.post('/', (req, res) => {
-  // TODO: create a new api
-})
+router.get('/:name', ApiController.findOne)
 
-router.put('/:id', (req, res) => {
-  // TODO: update api with id
-})
+router.post('/', ApiController.create)
 
-router.delete('/:id', (req, res) => {
-  // TODO: delete api
-})
+router.put('/:name', ApiController.update)
+
+router.delete('/:name', ApiController.delete)
 
 module.exports = router
