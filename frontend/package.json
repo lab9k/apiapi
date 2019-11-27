@@ -14,6 +14,7 @@
     "vue": "^2.6.10",
     "vue-json-component": "^0.3.0",
     "vue-router": "^3.1.3",
+    "vuedraggable": "^2.23.2",
     "vuetify": "^2.1.3",
     "vuex": "^3.1.1"
   },

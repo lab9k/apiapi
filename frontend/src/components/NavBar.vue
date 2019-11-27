@@ -18,10 +18,17 @@
       class="mr-3"
     >Api's</v-btn>
     <v-btn
+      :to="{name:'model-create'}"
+      text
+      exact
+      class="mr-3"
+    >Models</v-btn>
+    <v-btn
       :to="{name:'manage'}"
       exact
       color="primary"
     >Manage server</v-btn>
+
   </v-app-bar>
 </template>
 <script>

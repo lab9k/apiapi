@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import Home from '../views/Home.vue';
+import NotFound from '../views/NotFound.vue';
 
 Vue.use(Router);
 
@@ -30,10 +31,17 @@ export default new Router({
       component: () => import(/* webpackChunkName: "api-create" */ '../views/ApiCreate.vue'),
     },
     {
+      path: '/model',
+      name: 'model-create',
+      component: () => import(/* webpackChunkName: "model-create" */ '../views/ModelCreate.vue'),
+    },
+    {
       path: '/manage',
       name: 'manage',
       component: () =>
         import(/* webpackChunkName: "server-management" */ '../views/ServerManagement.vue'),
     },
+    { path: '*', component: NotFound },
   ],
+  mode: 'history',
 });
