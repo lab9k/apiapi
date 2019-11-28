@@ -3,6 +3,9 @@ const consola = require('consola')
 const { Nuxt, Builder } = require('nuxt')
 const bodyParser = require('body-parser')
 const morgan = require('morgan')
+const dotenv = require('dotenv')
+
+dotenv.config()
 
 const app = express()
 

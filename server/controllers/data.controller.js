@@ -4,10 +4,10 @@ const ApiModel = require('../db/models/api.db.model')
 
 module.exports = {
   getAll (req, res, next) {
-    ApiModel.getAll().then((allApis) => {
+    return ApiModel.getAll().then((allApis) => {
       const resultPromises = map(allApis, api => api.invoke())
       return Promise.all(resultPromises)
-    }).then((allResults) => { res.json(allResults) }).catch(next)
+    }).then(allResults => res.json(flatten(allResults))).catch(next)
   },
   getFromApi (req, res, next) {
     const { name } = req.params
@@ -18,7 +18,7 @@ module.exports = {
   getRawDataFromApi (req, res, next) {
     const { name } = req.params
     ApiModel.find({ name }).then((api) => {
-      api.raw().then(result => res.json(flatten(result)))
+      api.raw().then(result => res.json(result))
     }).catch(next)
   }
 }
