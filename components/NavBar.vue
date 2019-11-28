@@ -14,7 +14,7 @@
       home
     </v-btn>
     <v-btn
-      :to="{name:'api'}"
+      :to="{name:'apis'}"
       text
       exact
       class="mr-3"
