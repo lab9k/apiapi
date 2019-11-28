@@ -56,13 +56,21 @@ module.exports = {
         lazy: true,
         langDir: 'locales/'
       }
-    ]
+    ],
+    '@nuxtjs/proxy'
   ],
   /*
   ** Axios module configuration
   ** See https://axios.nuxtjs.org/options
   */
   axios: {
+    proxy: process.env === 'production'
+  },
+  proxy: {
+    '/api/': {
+      target: 'https://apiapi-dev.herokuapp.com/api/',
+      pathRewrite: { '^/api/': '' }
+    }
   },
   /*
   ** vuetify module configuration
