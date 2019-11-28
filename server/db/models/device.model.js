@@ -21,3 +21,4 @@ class Device {
     this.meta = meta
   }
 }
+module.exports = Device
