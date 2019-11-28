@@ -1,4 +1,4 @@
-import {actionTypes, mutationTypes} from './types'
+import { actionTypes, mutationTypes } from './types'
 
 export default {
   async [actionTypes.FETCH_APIS] ({ commit }) {
