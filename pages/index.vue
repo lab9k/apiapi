@@ -1,18 +1,8 @@
 <template>
   <v-container>
-    <v-btn :to="'api'">
-      Api's
-    </v-btn>
-    <v-btn
-      @click="invokeAll"
-      class="ml-5"
-    >
-      invoke all
-    </v-btn>
-    <j-s-o-n-view
-      :data="allData"
-      v-if="jsonVisible"
-    />
+    <v-btn :to="'api'" v-text="$tc('api')" />
+    <v-btn @click="invokeAll" v-text="$t('invoke_all')" class="ml-5" />
+    <j-s-o-n-view :data="allData" v-if="jsonVisible" />
   </v-container>
 </template>
 

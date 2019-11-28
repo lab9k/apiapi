@@ -50,13 +50,11 @@ module.exports = {
     [
       'nuxt-i18n',
       {
+        locales: [{ code: 'en', file: 'en.js' }],
         defaultLocale: 'en',
-        vueI18n: {
-          locale: 'en',
-          messages: {
-            en: require('./locales/en.json')
-          }
-        }
+        strategy: 'no_prefix',
+        lazy: true,
+        langDir: 'locales/'
       }
     ]
   ],
