@@ -70,8 +70,8 @@ module.exports = {
   },
   proxy: {
     '/api/': {
-      target: 'http://api.travelpayouts.com/v2/prices/latest',
-      pathRewrite: { '^/api/': 'https://apiapi-dev.herokuapp.com/api/' }
+      target: 'https://apiapi-dev.herokuapp.com/api/',
+      pathRewrite: { '^/api/': '' }
     }
   },
   /*
