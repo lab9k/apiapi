@@ -29,7 +29,8 @@
   </v-card>
 </template>
 <script>
-import { actions } from '@/store/types'
+import { mapActions } from 'vuex'
+import { actionTypes } from '~/store/api'
 
 export default {
   name: 'ApiCard',
@@ -40,8 +41,11 @@ export default {
     }
   },
   methods: {
+    ...mapActions({
+      delete: 'api/' + actionTypes.DELETE_API
+    }),
     deleteApi () {
-      this.$store.dispatch(actions.DELETE_API, this.api)
+      this.delete(this.api)
     }
   }
 }

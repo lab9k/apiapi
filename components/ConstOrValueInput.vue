@@ -32,7 +32,7 @@
 <script>
 import { mapGetters } from 'vuex'
 import { JSONView } from 'vue-json-component'
-import { getterTypes } from '../store'
+import { getterTypes } from '~/store/api'
 
 export default {
   name: 'ConstOrValueInput',
@@ -64,8 +64,7 @@ export default {
       }
     },
     updateValue (ev) {
-      const path = ev.path.substr(5)
-      this.value = path
+      this.value = ev.path.substr(5)
     }
   }
 }

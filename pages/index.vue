@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 import { JSONView } from 'vue-json-component'
 import { actionTypes, getterTypes } from '~/store/api'
 
@@ -31,9 +31,7 @@ export default {
     }
   },
   methods: {
-    invokeAll () {
-      this.$store.dispatch('api/' + actionTypes.INVOKE_ALL)
-    }
+    ...mapActions({ invokeAll: 'api/' + actionTypes.INVOKE_ALL })
   }
 }
 </script>

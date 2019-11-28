@@ -243,7 +243,7 @@
 </template>
 <script>
 import { mapGetters } from 'vuex'
-import { getterTypes } from '../store'
+import { getterTypes } from '../store/api'
 import ConstOrValueInput from './ConstOrValueInput.vue'
 
 export default {
