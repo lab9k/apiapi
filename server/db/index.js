@@ -10,10 +10,6 @@ const connectToDb = (url) => {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true
-  }).then(() => {
-    console.log('Connected to mongo')
-  }).catch((err) => {
-    console.error(err)
   })
 }
 

@@ -2,6 +2,7 @@ const express = require('express')
 const consola = require('consola')
 const { Nuxt, Builder } = require('nuxt')
 const bodyParser = require('body-parser')
+const morgan = require('morgan')
 
 const app = express()
 
@@ -29,11 +30,12 @@ async function start () {
   // Give nuxt middleware to express
   app.use(bodyParser.urlencoded({ extended: true }))
   app.use(bodyParser.json())
+  app.use(morgan('combined'))
   app.use((req, res, next) => {
     const url = process.env.MONGO_DB_URL || 'mongodb://127.0.0.1:27017/apiapi'
-    connectToDb(url).then((connected) => {
+    connectToDb(url).then(() => {
       next()
-    }).catch((err) => { return err })
+    }).catch(next)
   })
   app.use('/api', routes)
   app.use(nuxt.render)

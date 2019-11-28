@@ -3,7 +3,7 @@ import { actionTypes, mutationTypes } from './types'
 export default {
   async [actionTypes.FETCH_APIS] ({ commit }) {
     try {
-      const response = await fetch('http://localhost:3000/api')
+      const response = await fetch('/api/api')
       const apis = await response.json()
       commit(mutationTypes.UPDATE_API_LIST, apis)
     } catch (error) {
@@ -11,14 +11,14 @@ export default {
     }
   },
   async [actionTypes.FETCH_API_DATA] ({ commit }, { name }) {
-    const url = `http://localhost:3000/api/devices/${name}`
+    const url = `/api/data/raw/${name}`
     const response = await fetch(url)
     const data = await response.json()
     commit(mutationTypes.UPDATE_SELECTED_API_DATA, data)
   },
   async [actionTypes.INVOKE_ALL] ({ commit }) {
     try {
-      const url = 'http://localhost:3000/api/invoke'
+      const url = '/api/data'
       const response = await fetch(url)
       const json = await response.json()
       commit(mutationTypes.UPDATE_ALL_API_DATA, json)
@@ -28,7 +28,7 @@ export default {
   },
   async [actionTypes.CREATE_API] (undef, api) {
     try {
-      const url = 'http://localhost:3000/api'
+      const url = '/api/api'
       const response = await fetch(url, {
         method: 'POST',
         body: JSON.stringify(api),
@@ -37,15 +37,14 @@ export default {
           'Content-Type': 'application/json'
         }
       })
-      const data = await response.json()
-      return data
+      return await response.json()
     } catch (error) {
       return null
     }
   },
   async [actionTypes.DELETE_API] ({ commit }, { name }) {
     try {
-      const url = `http://localhost:3000/api/${name}`
+      const url = `/api/api/${name}`
       const response = await fetch(url, { method: 'DELETE' })
       const json = await response.json()
       if (json.ok === 1) {
@@ -58,7 +57,8 @@ export default {
   },
   async [actionTypes.FLUSH_CACHE] () {
     try {
-      const url = 'http://localhost:3000/api/flush'
+      console.warn('flush is not implemented in backend yet')
+      const url = '/api/flush'
       const response = await fetch(url, { method: 'POST' })
       const json = await response.json()
       return json.ok === 1
