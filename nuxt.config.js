@@ -46,7 +46,19 @@ module.exports = {
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
     // Doc: https://github.com/nuxt-community/dotenv-module
-    '@nuxtjs/dotenv'
+    '@nuxtjs/dotenv',
+    [
+      'nuxt-i18n',
+      {
+        defaultLocale: 'en',
+        vueI18n: {
+          locale: 'en',
+          messages: {
+            en: require('./locales/en.json')
+          }
+        }
+      }
+    ]
   ],
   /*
   ** Axios module configuration
