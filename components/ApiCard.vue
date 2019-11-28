@@ -12,7 +12,7 @@
     </v-card-text>
     <v-card-actions>
       <v-btn
-        :to="{ name: 'api-detail', params: { name: api.name } }"
+        :to="{ name: 'detail-id', params: { id: api._id } }"
         color="secondary"
         outlined
       >

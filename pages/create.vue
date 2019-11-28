@@ -219,9 +219,7 @@ export default {
       if (this.basePath !== path) {
         this.basePath = path
         const currentData = this.rawData
-        console.log(currentData)
         const newData = getProp(currentData, path)
-        console.log(newData)
         this.update(newData)
       }
     }
