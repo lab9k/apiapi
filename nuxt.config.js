@@ -58,13 +58,21 @@ module.exports = {
           }
         }
       }
-    ]
+    ],
+    '@nuxtjs/proxy'
   ],
   /*
   ** Axios module configuration
   ** See https://axios.nuxtjs.org/options
   */
   axios: {
+    proxy: process.env === 'production'
+  },
+  proxy: {
+    '/api/': {
+      target: 'http://api.travelpayouts.com/v2/prices/latest',
+      pathRewrite: { '^/api/': 'https://apiapi-dev.herokuapp.com/api/' }
+    }
   },
   /*
   ** vuetify module configuration
