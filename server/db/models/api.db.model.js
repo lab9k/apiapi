@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
-const getProp = require('lodash/get')
+const { get: getProp } = require('lodash')
+const RedisService = require('../../services/redis.service')
 const HttpService = require('../../services/http.service')
 const Device = require('./device.model')
 
@@ -98,41 +99,48 @@ ApiSchema.methods.raw = function getRawData () {
 }
 
 ApiSchema.methods.invoke = function invokeApi () {
-  const client = new HttpService(this.url, this.customHeaders)
-  const prom = this.requestMethod === 'get'
-    ? client.get()
-    : client.post(this.requestData)
-
-  return prom.then(({ data: response }) => {
-    const data = !this.dataPath ? response : getProp(response, this.dataPath)
-
-    const searchProp = (element, prop) => {
-      if (!this.paths[prop]) { return undefined }
-      return this.paths[prop].type === PATH_TYPES.CONSTANT
-        ? this.paths[prop].value
-        : getProp(element, this.paths[prop].value)
+  return RedisService.getData(this.name).then((cachedResponse) => {
+    if (cachedResponse) {
+      return JSON.parse(cachedResponse)
     }
-    return data.map((element) => {
-      const id = searchProp(element, 'id')
-      const organization = searchProp(element, 'organization')
-      const reference = searchProp(element, 'reference')
-      const longitude = searchProp(element, 'longitude')
-      const latitude = searchProp(element, 'latitude')
-      const application = searchProp(element, 'application')
-      const meta = searchProp(element, 'meta')
-      const types = searchProp(element, 'types')
-      const categories = searchProp(element, 'categories')
-      return new Device({
-        id,
-        organization,
-        reference,
-        longitude,
-        latitude,
-        application,
-        meta,
-        types,
-        categories
+    const client = new HttpService(this.url, this.customHeaders)
+    const prom = this.requestMethod === 'get'
+      ? client.get()
+      : client.post(this.requestData)
+
+    return prom.then(({ data: response }) => {
+      const data = !this.dataPath ? response : getProp(response, this.dataPath)
+
+      const searchProp = (element, prop) => {
+        if (!this.paths[prop]) { return undefined }
+        return this.paths[prop].type === PATH_TYPES.CONSTANT
+          ? this.paths[prop].value
+          : getProp(element, this.paths[prop].value)
+      }
+      const allData = data.map((element) => {
+        const id = searchProp(element, 'id')
+        const organization = searchProp(element, 'organization')
+        const reference = searchProp(element, 'reference')
+        const longitude = searchProp(element, 'longitude')
+        const latitude = searchProp(element, 'latitude')
+        const application = searchProp(element, 'application')
+        const meta = searchProp(element, 'meta')
+        const types = searchProp(element, 'types')
+        const categories = searchProp(element, 'categories')
+        return new Device({
+          id,
+          organization,
+          reference,
+          longitude,
+          latitude,
+          application,
+          meta,
+          types,
+          categories
+        })
       })
+      RedisService.setData(this.name, JSON.stringify(allData))
+      return allData
     })
   })
 }

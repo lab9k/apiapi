@@ -10,7 +10,7 @@
       invoke all
     </v-btn>
     <j-s-o-n-view
-      :data="all_data"
+      :data="allData"
       v-if="jsonVisible"
     />
   </v-container>
