@@ -1,6 +1,8 @@
 # apiapi
 
-> My astonishing Nuxt.js project
+> This is some sort of an api manager, which dynamically combines data from different api's. now the api expects to 
+> return data in a set structure, the goal of this project is to structure the returned data dynamically 
+> (more "configurable") as well.
 
 ## Build Setup
 
