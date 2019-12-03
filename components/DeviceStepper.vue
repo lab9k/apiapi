@@ -256,7 +256,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters([getterTypes.SELECTED_API_DATA])
+    ...mapGetters({ selected_data: 'api/' + getterTypes.SELECTED_API_DATA })
   },
   methods: {
     nextStep (n) {

@@ -23,7 +23,7 @@
       cols="12"
     >
       <j-s-o-n-view
-        :data="selected_api_data"
+        :data="selected_data"
         @selected="updateValue"
       />
     </v-col>
@@ -53,7 +53,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters([getterTypes.SELECTED_API_DATA])
+    ...mapGetters({ selected_data: 'api/' + getterTypes.SELECTED_API_DATA })
   },
 
   methods: {
