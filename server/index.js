@@ -35,10 +35,12 @@ async function start () {
   app.use(bodyParser.json())
   app.use(morgan('combined'))
   app.use((req, res, next) => {
-    const url = process.env.MONGO_DB_URL || 'mongodb://127.0.0.1:27017/apiapi'
-    connectToDb(url).then(() => {
-      next()
-    }).catch(next)
+    const url = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/apiapi'
+    connectToDb(url)
+      .then(() => {
+        next()
+      })
+      .catch(next)
   })
   app.use('/api', routes)
   app.use(nuxt.render)
