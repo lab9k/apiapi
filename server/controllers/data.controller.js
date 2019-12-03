@@ -1,5 +1,4 @@
-const { map } = require('lodash')
-const flatten = require('lodash/flatten')
+const { map, flatten } = require('lodash')
 const ApiModel = require('../db/models/api.db.model')
 
 module.exports = {
