@@ -1,4 +1,4 @@
-import { slice } from 'lodash'
+import { slice, shuffle } from 'lodash'
 import { mutationTypes } from './types'
 
 export default {
@@ -13,7 +13,8 @@ export default {
   },
   [mutationTypes.UPDATE_ALL_API_DATA] (state, data) {
     // TODO: adding all data at once can cause memory issues....
-    state.all_data = slice(data, 0, 250)
+    // state.all_data = data
+    state.all_data = shuffle(slice(data, 0, 250))
   },
   [mutationTypes.DELETE_LOCAL_API] (state, name) {
     state.apis = state.apis.filter(el => el.name !== name)
