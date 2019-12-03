@@ -4,6 +4,7 @@ const { Nuxt, Builder } = require('nuxt')
 const bodyParser = require('body-parser')
 const morgan = require('morgan')
 const dotenv = require('dotenv')
+const cors = require('cors')
 
 dotenv.config()
 
@@ -31,6 +32,7 @@ async function start () {
   }
 
   // Give nuxt middleware to express
+  app.use(cors())
   app.use(bodyParser.urlencoded({ extended: true }))
   app.use(bodyParser.json())
   app.use(morgan('combined'))
