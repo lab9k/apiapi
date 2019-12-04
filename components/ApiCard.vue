@@ -1,10 +1,8 @@
 <template>
   <v-card>
     <v-card-text>
-      <p class="display-1 text--primary">
-        {{ api.name }}
-      </p>
-      <p>adjective</p>
+      <p v-text="api.name" class="display-1 text--primary" />
+      <p v-t="'adjective'" />
       <div class="text--primary">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium, labore
         perferendis?
@@ -13,18 +11,16 @@
     <v-card-actions>
       <v-btn
         :to="{ name: 'detail-id', params: { id: api._id } }"
+        v-t="'actions.details'"
         color="secondary"
         outlined
-      >
-        details
-      </v-btn>
+      />
       <v-btn
         @click="deleteApi"
+        v-t="'actions.delete'"
         color="error"
         outlined
-      >
-        delete
-      </v-btn>
+      />
     </v-card-actions>
   </v-card>
 </template>

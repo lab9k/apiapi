@@ -1,9 +1,7 @@
 <template>
   <div v-if="api">
-    <p>Name is: {{ api.name }}</p>
-    <v-btn @click="loadData">
-      load
-    </v-btn>
+    <h1 v-text="api.name" />
+    <v-btn @click="loadData" v-t="'actions.load'" />
   </div>
 </template>
 <script>

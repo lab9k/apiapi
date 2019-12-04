@@ -2,12 +2,17 @@
  "api": "API | APIs | {count} APIs",
  "invoke_all": "invoke all",
  "currentDataModel": "Current data model",
+ "adjective": "adjective",
  "formLabels": {
   "name": "Name",
   "url": "URL",
   "authMethod": "Authentication method",
   "apiKey": "API key",
-  "setBasePath": "Set base path"
+  "setBasePath": "Set base path",
+  "type": "Type",
+  "propertyName": "Property name",
+  "headerName": "Header name",
+  "headerValue": "Header value"
  },
  "actions": {
   "addHeader": "Add header",
@@ -15,10 +20,17 @@
   "validate": "Validate",
   "reset": "Reset form",
   "confirm": "Confirm",
-  "flushCache": "Flush cache"
+  "flushCache": "Flush cache",
+  "load": "Load",
+  "add": "Add",
+  "details": "Details",
+  "delete": "Delete",
+  "submit": "Submit",
+  "reject": "Reject"
  },
  "notifications": {
   "cacheFlushed": "Cache successfully flushed.",
-  "cacheNotFlushed": "Something went wrong. Cache not flushed."
+  "cacheNotFlushed": "Something went wrong. Cache not flushed.",
+  "fieldTypeNotFound": "Field type {type} does not exist."
  }
 }

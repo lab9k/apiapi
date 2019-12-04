@@ -1,9 +1,7 @@
 <template>
   <v-container fluid>
     <v-row>
-      <v-btn @click="addField">
-        Add
-      </v-btn>
+      <v-btn @click="addField" v-t="'actions.add'" />
     </v-row>
     <v-col>
       <abstract-field

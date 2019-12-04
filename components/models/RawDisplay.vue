@@ -1,7 +1,7 @@
 <template>
   <div>
-    <h3>{{ title }}</h3>
-    <pre>{{ valueString }}</pre>
+    <h3 v-text="title" />
+    <pre v-text="valueString" />
   </div>
 </template>
 <script>

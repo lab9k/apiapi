@@ -5,8 +5,8 @@
         <v-select
           :items="optionItems"
           v-model="selection"
+          :label="$t('formLabels.type')"
           required
-          label="Type"
         />
         <v-text-field
           :rules="rules"

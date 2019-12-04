@@ -25,16 +25,14 @@
       <v-card-actions>
         <v-btn
           @click="submit"
+          v-t="'actions.submit'"
           color="success"
-        >
-          Submit
-        </v-btn>
+        />
         <v-btn
           @click="reject"
+          v-t="'actions.reject'"
           color="error"
-        >
-          Reject
-        </v-btn>
+        />
       </v-card-actions>
     </v-card>
   </v-dialog>

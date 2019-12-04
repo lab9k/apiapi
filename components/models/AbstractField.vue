@@ -44,7 +44,7 @@ export default {
         case 'String':
           return 'Primitive'
         default:
-          throw new Error(`Field type "${this.item.type}" does not exist`)
+          throw new Error(this.$i18n.t('notifications.fieldTypeNotFound', { type: this.item.type }))
       }
     }
   },

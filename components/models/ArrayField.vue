@@ -4,18 +4,15 @@
       <v-select
         v-model="value.type"
         :items="types"
-        label="Type"
+        :label="$t('formLabels.type')"
       />
     </v-col>
     <v-col class="pb-0">
       <v-text-field
         v-model="value.name"
-        label="Property name"
+        :label="$t('formLabels.propertyName')"
       />
     </v-col>
-    <!-- <v-col>
-        <v-text-field />
-      </v-col> -->
     <v-col
       cols="1"
       class="pb-0"

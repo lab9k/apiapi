@@ -35,13 +35,13 @@
         <v-row>
           <v-btn
             @click="addHeader"
-            v-text="$t('actions.addHeader')"
+            v-t="'actions.addHeader'"
             color="success lighten-1"
             class="mr-4"
           />
           <v-btn
             @click="removeHeader"
-            v-text="$t('actions.removeHeader')"
+            v-t="'actions.removeHeader'"
             color="error lighten-1"
           />
         </v-row>
@@ -60,7 +60,7 @@
       />
       <v-btn
         @click="reset"
-        v-text="$t('actions.reset')"
+        v-t="'actions.reset'"
         color="error"
         class="mr-4"
       />
@@ -97,7 +97,7 @@
       <template v-slot:btn>
         <v-btn
           @click="$refs.confirmDialog.toggle()"
-          v-text="$t('actions.confirm')"
+          v-t="'actions.confirm'"
           class="mt-5"
         />
       </template>

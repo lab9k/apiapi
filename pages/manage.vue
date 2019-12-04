@@ -4,11 +4,11 @@
       <v-btn
         @click="flushCache"
         :loading="loadingFlushBtn"
-        v-text="$t('flushCache')"
+        v-t="'flushCache'"
         color="danger"
         class="mr-4"
       />
-      <span v-if="flushMessage" :class="flushTextColor" v-text="$t(flushMessage)" />
+      <span v-if="flushMessage" :class="flushTextColor" v-t="flushMessage" />
     </v-row>
   </v-container>
 </template>
