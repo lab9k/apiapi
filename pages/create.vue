@@ -7,14 +7,14 @@
       <v-text-field
         v-model="name"
         :rules="nameRules"
-        :label="$t('name')"
+        :label="$t('formLabels.name')"
         required
       />
 
       <v-text-field
         v-model="url"
         :rules="urlRules"
-        :label="$t('url')"
+        :label="$t('formLabels.url')"
         required
       />
 
@@ -22,26 +22,26 @@
         v-model="authMethod"
         :items="authMethodItems"
         :rules="authMethodRules"
-        :label="$t('authMethod')"
+        :label="$t('formLabels.authMethod')"
         required
       />
 
       <v-text-field
         v-model="apiKey"
         v-if="authMethod === 'api_key'"
-        :label="$t('apiKey')"
+        :label="$t('formLabels.apiKey')"
       />
       <v-sheet v-if="authMethod === 'custom_headers'">
         <v-row>
           <v-btn
             @click="addHeader"
-            v-text="$t('addHeader')"
+            v-text="$t('actions.addHeader')"
             color="success lighten-1"
             class="mr-4"
           />
           <v-btn
             @click="removeHeader"
-            v-text="$t('removeHeader')"
+            v-text="$t('actions.removeHeader')"
             color="error lighten-1"
           />
         </v-row>
@@ -54,13 +54,13 @@
       <v-btn
         :disabled="!valid"
         @click="validate"
-        v-text="$t('validate')"
+        v-text="$t('actions.validate')"
         color="success lighten-1"
         class="mr-4"
       />
       <v-btn
         @click="reset"
-        v-text="$t('reset')"
+        v-text="$t('actions.reset')"
         color="error"
         class="mr-4"
       />
@@ -76,7 +76,7 @@
     >
       <v-switch
         v-model="basePathSelectorVisible"
-        :label="$t('setBasePath')"
+        :label="$t('formLabels.setBasePath')"
       />
       <v-text-field
         v-if="basePathSelectorVisible"
@@ -97,7 +97,7 @@
       <template v-slot:btn>
         <v-btn
           @click="$refs.confirmDialog.toggle()"
-          v-text="$t('confirm')"
+          v-text="$t('actions.confirm')"
           class="mt-5"
         />
       </template>

@@ -4,11 +4,11 @@
       <v-btn
         @click="flushCache"
         :loading="loadingFlushBtn"
+        v-text="$t('flushCache')"
         color="danger"
         class="mr-4"
-      >
-        flush cache
-      </v-btn><span :class="flushTextColor">{{ flushMessage }}</span>
+      />
+      <span v-if="flushMessage" :class="flushTextColor" v-text="$t(flushMessage)" />
     </v-row>
   </v-container>
 </template>
@@ -36,9 +36,9 @@ export default {
       this.loadingFlushBtn = true
       this.flushSuccess = await this.flush
       if (this.flushSuccess) {
-        this.flushMessage = 'cache successfully flushed'
+        this.flushMessage = 'notifications.cacheFlushed'
       } else {
-        this.flushMessage = 'Something went wrong. Cache not flushed'
+        this.flushMessage = 'notifications.cacheNotFlushed'
       }
       this.loadingFlushBtn = false
     }

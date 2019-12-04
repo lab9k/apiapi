@@ -6,7 +6,7 @@
       </v-col>
       <v-col cols="4">
         <raw-display
-          :title="'Current data model'"
+          :title="$t('currentDataModel')"
           :value="list"
         />
       </v-col>

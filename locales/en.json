@@ -1,6 +1,7 @@
 {
  "api": "API | APIs | {count} APIs",
  "invoke_all": "invoke all",
+ "currentDataModel": "Current data model",
  "formLabels": {
   "name": "Name",
   "url": "URL",
@@ -13,6 +14,11 @@
   "removeHeader": "Remove header",
   "validate": "Validate",
   "reset": "Reset form",
-  "confirm": "Confirm"
+  "confirm": "Confirm",
+  "flushCache": "Flush cache"
+ },
+ "notifications": {
+  "cacheFlushed": "Cache successfully flushed.",
+  "cacheNotFlushed": "Something went wrong. Cache not flushed."
  }
 }
