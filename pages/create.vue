@@ -7,14 +7,14 @@
       <v-text-field
         v-model="name"
         :rules="nameRules"
-        label="Name"
+        :label="$t('name')"
         required
       />
 
       <v-text-field
         v-model="url"
         :rules="urlRules"
-        label="Url"
+        :label="$t('url')"
         required
       />
 
@@ -22,30 +22,28 @@
         v-model="authMethod"
         :items="authMethodItems"
         :rules="authMethodRules"
-        label="Authentication method"
+        :label="$t('authMethod')"
         required
       />
 
       <v-text-field
         v-model="apiKey"
         v-if="authMethod === 'api_key'"
-        label="Api Key"
+        :label="$t('apiKey')"
       />
       <v-sheet v-if="authMethod === 'custom_headers'">
         <v-row>
           <v-btn
             @click="addHeader"
+            v-text="$t('addHeader')"
             color="success lighten-1"
             class="mr-4"
-          >
-            add header
-          </v-btn>
+          />
           <v-btn
             @click="removeHeader"
+            v-text="$t('removeHeader')"
             color="error lighten-1"
-          >
-            remove header
-          </v-btn>
+          />
         </v-row>
         <custom-header-input
           v-for="n in customHeaders"
@@ -56,20 +54,16 @@
       <v-btn
         :disabled="!valid"
         @click="validate"
+        v-text="$t('validate')"
         color="success lighten-1"
         class="mr-4"
-      >
-        Validate
-      </v-btn>
-
+      />
       <v-btn
         @click="reset"
+        v-text="$t('reset')"
         color="error"
         class="mr-4"
-      >
-        Reset Form
-      </v-btn>
-
+      />
       <v-progress-circular
         v-if="loadingData"
         indeterminate
@@ -82,9 +76,8 @@
     >
       <v-switch
         v-model="basePathSelectorVisible"
-        :label="'Set base path'"
+        :label="$t('setBasePath')"
       />
-
       <v-text-field
         v-if="basePathSelectorVisible"
         @change="setBasePath"
@@ -104,10 +97,9 @@
       <template v-slot:btn>
         <v-btn
           @click="$refs.confirmDialog.toggle()"
+          v-text="$t('confirm')"
           class="mt-5"
-        >
-          Confirm
-        </v-btn>
+        />
       </template>
     </confirm-creation-dialog>
   </v-container>

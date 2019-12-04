@@ -1,4 +1,18 @@
 {
  "api": "API | APIs | {count} APIs",
- "invoke_all": "invoke all"
+ "invoke_all": "invoke all",
+ "formLabels": {
+  "name": "Name",
+  "url": "URL",
+  "authMethod": "Authentication method",
+  "apiKey": "API key",
+  "setBasePath": "Set base path"
+ },
+ "actions": {
+  "addHeader": "Add header",
+  "removeHeader": "Remove header",
+  "validate": "Validate",
+  "reset": "Reset form",
+  "confirm": "Confirm"
+ }
 }
