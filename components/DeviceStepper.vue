@@ -5,83 +5,17 @@
       class="mt-5"
     >
       <v-stepper-header>
-        <v-stepper-step
-          :complete="step > 1"
-          :editable="true"
-          step="1"
-        >
-          Id
-        </v-stepper-step>
-
-        <v-divider />
-
-        <v-stepper-step
-          :complete="step > 2"
-          :editable="true"
-          step="2"
-        >
-          Organization
-        </v-stepper-step>
-
-        <v-divider />
-
-        <v-stepper-step
-          :complete="step > 3"
-          :editable="true"
-          step="3"
-        >
-          Reference
-        </v-stepper-step>
-
-        <v-divider />
-
-        <v-stepper-step
-          :complete="step > 4"
-          :editable="true"
-          step="4"
-        >
-          Application
-        </v-stepper-step>
-
-        <v-divider />
-
-        <v-stepper-step
-          :complete="step > 5"
-          :editable="true"
-          step="5"
-        >
-          Types
-        </v-stepper-step>
-
-        <v-divider />
-
-        <v-stepper-step
-          :complete="step > 6"
-          :editable="true"
-          step="6"
-        >
-          Categories
-        </v-stepper-step>
-
-        <v-divider />
-
-        <v-stepper-step
-          :complete="step > 7"
-          :editable="true"
-          step="7"
-        >
-          Longitude
-        </v-stepper-step>
-
-        <v-divider />
-
-        <v-stepper-step
-          :complete="step > 8"
-          :editable="true"
-          step="8"
-        >
-          Latitude
-        </v-stepper-step>
+        <template v-for="(currentStep, index) in steps">
+          <v-stepper-step
+            :complete="step > index+1"
+            :editable="true"
+            :key="index"
+            :step="index + 1"
+          >
+            {{ $t('steps.' + currentStep) }}
+          </v-stepper-step>
+          <v-divider v-if="index < steps.length - 1" />
+        </template>
       </v-stepper-header>
 
       <v-stepper-items>
@@ -252,7 +186,8 @@ export default {
   data () {
     return {
       step: 0,
-      id: ''
+      id: '',
+      steps: ['id', 'organization', 'reference', 'application', 'types', 'categories', 'longitude', 'latitude']
     }
   },
   computed: {

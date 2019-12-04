@@ -28,6 +28,17 @@
   "submit": "Submit",
   "reject": "Reject"
  },
+ "steps": {
+  "id": "Id",
+  "organization": "Organization",
+  "reference": "Reference",
+  "application": "Application",
+  "types": "Types",
+  "categories": "Categories",
+  "longitude": "Longitude",
+  "latitude": "Latitude"
+
+ },
  "notifications": {
   "cacheFlushed": "Cache successfully flushed.",
   "cacheNotFlushed": "Something went wrong. Cache not flushed.",
