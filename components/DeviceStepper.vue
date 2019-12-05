@@ -9,7 +9,7 @@
           <v-stepper-step
             :complete="step > index + 1"
             :editable="true"
-            :key="index"
+            :key="'header-' + index"
             :step="index + 1"
           >
             {{ $t('steps.' + currentStep) }}
@@ -19,7 +19,7 @@
       </v-stepper-header>
 
       <v-stepper-items>
-        <v-stepper-content v-for="(currentStep, index) in steps" :step="index + 1">
+        <v-stepper-content v-for="(currentStep, index) in steps" :step="index + 1" :key="'content-' + index">
           <v-container fluid>
             <const-or-value-input
               :ref="'stepper-' + (index + 1)"
