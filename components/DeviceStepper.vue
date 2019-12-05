@@ -7,7 +7,7 @@
       <v-stepper-header>
         <template v-for="(currentStep, index) in steps">
           <v-stepper-step
-            :complete="step > index+1"
+            :complete="step > index + 1"
             :editable="true"
             :key="index"
             :step="index + 1"
@@ -19,157 +19,26 @@
       </v-stepper-header>
 
       <v-stepper-items>
-        <v-stepper-content :step="1">
+        <v-stepper-content v-for="(currentStep, index) in steps" :step="index + 1">
           <v-container fluid>
             <const-or-value-input
-              ref="stepper-1"
-              label="Id"
+              :ref="'stepper-' + (index + 1)"
+              :label="$t('steps.' + currentStep)"
             />
           </v-container>
-
           <v-btn
-            @click="nextStep(1)"
+            v-if="index < steps.length - 1"
+            @click="nextStep(index + 1)"
+            v-t="'actions.continue'"
             color="primary"
-          >
-            Continue
-          </v-btn>
-
-          <v-btn text>
-            Cancel
-          </v-btn>
-        </v-stepper-content>
-        <v-stepper-content :step="2">
-          <v-container fluid>
-            <const-or-value-input
-              ref="stepper-2"
-              :label="`Organization`"
-            />
-          </v-container>
-
+          />
           <v-btn
-            @click="nextStep(2)"
-            color="primary"
-          >
-            Continue
-          </v-btn>
-
-          <v-btn text>
-            Cancel
-          </v-btn>
-        </v-stepper-content>
-        <v-stepper-content :step="3">
-          <v-container fluid>
-            <const-or-value-input
-              ref="stepper-3"
-              :label="`Reference`"
-            />
-          </v-container>
-
-          <v-btn
-            @click="nextStep(3)"
-            color="primary"
-          >
-            Continue
-          </v-btn>
-
-          <v-btn text>
-            Cancel
-          </v-btn>
-        </v-stepper-content>
-        <v-stepper-content :step="4">
-          <v-container fluid>
-            <const-or-value-input
-              ref="stepper-4"
-              :label="`Application`"
-            />
-          </v-container>
-
-          <v-btn
-            @click="nextStep(4)"
-            color="primary"
-          >
-            Continue
-          </v-btn>
-
-          <v-btn text>
-            Cancel
-          </v-btn>
-        </v-stepper-content>
-        <v-stepper-content :step="5">
-          <v-container fluid>
-            <const-or-value-input
-              ref="stepper-5"
-              :label="`Types`"
-            />
-          </v-container>
-
-          <v-btn
-            @click="nextStep(5)"
-            color="primary"
-          >
-            Continue
-          </v-btn>
-
-          <v-btn text>
-            Cancel
-          </v-btn>
-        </v-stepper-content>
-        <v-stepper-content :step="6">
-          <v-container fluid>
-            <const-or-value-input
-              ref="stepper-6"
-              :label="`Categories`"
-            />
-          </v-container>
-
-          <v-btn
-            @click="nextStep(6)"
-            color="primary"
-          >
-            Continue
-          </v-btn>
-
-          <v-btn text>
-            Cancel
-          </v-btn>
-        </v-stepper-content>
-        <v-stepper-content :step="7">
-          <v-container fluid>
-            <const-or-value-input
-              ref="stepper-7"
-              :label="`Longitude`"
-            />
-          </v-container>
-
-          <v-btn
-            @click="nextStep(7)"
-            color="primary"
-          >
-            Continue
-          </v-btn>
-
-          <v-btn text>
-            Cancel
-          </v-btn>
-        </v-stepper-content>
-        <v-stepper-content :step="8">
-          <v-container fluid>
-            <const-or-value-input
-              ref="stepper-8"
-              :label="`Latitude`"
-            />
-          </v-container>
-
-          <v-btn
+            v-else
             @click="completeStepper()"
+            v-t="'actions.complete'"
             color="primary"
-          >
-            Complete
-          </v-btn>
-
-          <v-btn text>
-            Cancel
-          </v-btn>
+          />
+          <v-btn v-t="'actions.cancel'" text />
         </v-stepper-content>
       </v-stepper-items>
     </v-stepper>
