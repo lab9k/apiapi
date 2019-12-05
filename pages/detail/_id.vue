@@ -2,6 +2,7 @@
   <div v-if="api">
     <h1 v-text="api.name" />
     <v-btn @click="loadData" v-t="'actions.load'" />
+    {{ selectedData }}
   </div>
 </template>
 <script>
@@ -17,7 +18,10 @@ export default {
     }
   },
   computed: {
-    ...mapGetters({ apis: 'api/' + getterTypes.APIS }),
+    ...mapGetters({
+      apis: 'api/' + getterTypes.APIS,
+      selectedData: 'api/' + getterTypes.SELECTED_API_DATA
+    }),
     api () {
       return this.apis.find(el => el._id === this.id)
     }
@@ -30,7 +34,7 @@ export default {
     ...mapActions({ fetchData: 'api/' + actionTypes.FETCH_API_DATA }),
     ...mapMutations({ clear: 'api/' + mutationTypes.CLEAR_SELECTION }),
     loadData () {
-      this.fetchData({ name: this.id })
+      this.fetchData({ name: this.api.name })
     }
   }
 }

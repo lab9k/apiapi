@@ -90,12 +90,12 @@ const ApiSchema = mongoose.Schema({
   }
 })
 
-ApiSchema.methods.raw = function getRawData () {
-  const { data: response } =
-    this.requestMethod === 'get'
-      ? this.client.get()
-      : this.client.post(this.requestData)
-  return response
+ApiSchema.methods.raw = async function getRawData () {
+  const client = new HttpService(this.url, this.customHeaders)
+  const { data } = this.requestMethod === 'get'
+    ? await client.get()
+    : await client.post(this.requestData)
+  return data
 }
 
 ApiSchema.methods.invoke = function invokeApi () {

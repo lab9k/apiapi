@@ -16,7 +16,7 @@ module.exports = {
   },
   getRawDataFromApi (req, res, next) {
     const { name } = req.params
-    ApiModel.find({ name }).then((api) => {
+    ApiModel.findOne({ name }).then((api) => {
       api.raw().then(result => res.json(result))
     }).catch(next)
   }
