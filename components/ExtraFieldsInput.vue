@@ -1,18 +1,28 @@
 <template>
   <v-container fluid>
     <v-row>
-      <v-btn @click="fields.push('')">
+      <v-btn @click="addField()">
         +
       </v-btn>
-      <v-btn @click="fields.pop()">
+      <v-btn @click="removeField()">
         -
       </v-btn>
     </v-row>
 
     <v-container fluid>
       <v-row v-for="(field,index) in fields" :key="`field-${index}`">
-        <v-text-field v-model="fields[index]" required />
-        <const-or-value-input :label="field" :ref="index" />
+        <v-col cols="3">
+          <v-text-field
+            v-model="fields[index]"
+            :rules="propertyNameRules"
+            required
+            label="Property name"
+            prepend-icon="mdi-help-circle-outline"
+          />
+        </v-col>
+        <v-col cols="9">
+          <const-or-value-input :label="field" :ref="index" />
+        </v-col>
       </v-row>
     </v-container>
   </v-container>
@@ -31,7 +41,12 @@ export default {
   },
   data () {
     return {
-      fields: []
+      fields: [],
+      propertyNameRules: [
+        v => !!v || 'This field is required',
+        v => v.split(' ').length === 1 || 'This field cannot contain spaces. Please use "_"',
+        v => v.split('-').length === 1 || 'This field cannot contain hyphens. Please use "_"'
+      ]
     }
   },
   methods: {
@@ -41,6 +56,12 @@ export default {
         meta[fieldName] = this.$refs[index][0].getValue().value
       })
       return meta
+    },
+    addField () {
+      this.fields.push('')
+    },
+    removeField () {
+      this.fields.pop()
     }
   }
 }
