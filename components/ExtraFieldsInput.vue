@@ -53,7 +53,8 @@ export default {
     getValue () {
       const meta = {}
       this.fields.forEach((fieldName, index) => {
-        meta[fieldName] = this.$refs[index][0].getValue().value
+        const [field] = this.$refs[index]
+        meta[fieldName] = field.getValue().value
       })
       return meta
     },
