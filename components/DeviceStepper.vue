@@ -20,7 +20,13 @@
 
       <v-stepper-items>
         <v-stepper-content v-for="(currentStep, index) in steps" :step="index + 1" :key="'content-' + index">
-          <v-container fluid>
+          <v-container v-if="currentStep === 'meta'" fluid>
+            <extra-fields-input
+              :ref="'stepper-' + (index + 1)"
+              :label="$t('steps.' + currentStep)"
+            />
+          </v-container>
+          <v-container v-else fluid>
             <const-or-value-input
               :ref="'stepper-' + (index + 1)"
               :label="$t('steps.' + currentStep)"
@@ -48,15 +54,16 @@
 import { mapGetters } from 'vuex'
 import { getterTypes } from '../store/api'
 import ConstOrValueInput from './ConstOrValueInput.vue'
+import ExtraFieldsInput from './ExtraFieldsInput'
 
 export default {
   name: 'DeviceStepper',
-  components: { ConstOrValueInput },
+  components: { ExtraFieldsInput, ConstOrValueInput },
   data () {
     return {
       step: 0,
       id: '',
-      steps: ['id', 'organization', 'reference', 'application', 'types', 'categories', 'longitude', 'latitude']
+      steps: ['id', 'organization', 'reference', 'application', 'types', 'categories', 'longitude', 'latitude', 'meta']
     }
   },
   computed: {
@@ -72,26 +79,33 @@ export default {
     },
     completeStepper () {
       const paths = {}
-      for (let i = 1; i <= 8; i += 1) {
-        const step = this.$refs[`stepper-${i}`]
-        paths[step.label.toLowerCase()] = this.$refs[`stepper-${i}`].getValue()
+      for (let i = 1; i <= this.steps.length; i += 1) {
+        try {
+          const step = this.$refs[`stepper-${i}`][0]
+          paths[step.label.toLowerCase()] = step.getValue()
+        } catch (e) {
+          console.error(e)
+        }
       }
+      console.log(paths)
       this.$emit('complete', paths)
     }
   }
 }
 </script>
 <style lang="scss">
-.mstepper {
-  .v-stepper {
-    overflow-x: hidden;
-    overflow: unset;
-    .v-stepper__items {
-      overflow: visible;
-      .v-stepper__wrapper {
+  .mstepper {
+    .v-stepper {
+      overflow-x: hidden;
+      overflow: unset;
+
+      .v-stepper__items {
         overflow: visible;
+
+        .v-stepper__wrapper {
+          overflow: visible;
+        }
       }
     }
   }
-}
 </style>
