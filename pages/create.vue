@@ -54,7 +54,7 @@
       <v-btn
         :disabled="!valid"
         @click="validate"
-        v-text="$t('actions.validate')"
+        v-t="'actions.validate'"
         color="success lighten-1"
         class="mr-4"
       />
@@ -123,9 +123,9 @@ export default {
     return {
       valid: true,
       nameRules: [v => !!v || 'Name is required'],
-      name: 'luftdaten temp',
+      name: 'Donkey Republic bike sharing',
       urlRules: [v => !!v || 'Url is required'],
-      url: 'https://maps.luftdaten.info/data/v2/data.temp.min.json',
+      url: 'https://datatank.stad.gent/4/mobiliteit/donkeyrepublicdeelfietsenlocaties.json',
       authMethodItems: [
         { text: 'Open', value: 'open' },
         { value: 'api_key', text: 'Api key' },

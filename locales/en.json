@@ -50,6 +50,7 @@
     "longitude": "Longitude",
     "organization": "Organization",
     "reference": "Reference",
-    "types": "Types"
+    "types": "Types",
+    "meta": "Meta"
   }
 }
