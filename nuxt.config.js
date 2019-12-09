@@ -64,13 +64,10 @@ module.exports = {
   ** See https://axios.nuxtjs.org/options
   */
   axios: {
-    proxy: process.env === 'production'
+    // proxy: process.env === 'production'
   },
   proxy: {
-    '/api/': {
-      target: 'https://apiapi-dev.herokuapp.com/api/',
-      pathRewrite: { '^/api/': '' }
-    }
+    // '/api/': process.env.NODE_ENV === 'production' ? 'https://apiapi-dev.herokuapp.com/api/' : 'http://localhost:3000/api/'
   },
   /*
   ** vuetify module configuration
