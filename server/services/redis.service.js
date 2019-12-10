@@ -41,8 +41,8 @@ class RedisClient {
   }
 
   flushDb () {
-    if (!this.client) { return Promise.resolve(null) }
-    return this.client.flushall()
+    if (!this.client) { return Promise.reject(new Error('Client is not initialized')) }
+    return this.client.flushallAsync()
   }
 }
 

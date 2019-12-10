@@ -203,7 +203,7 @@ export default {
             // TODO: handle error
           }
           this.dialogVisible = false
-          this.$router.push({ name: 'api' })
+          this.$router.push({ name: 'apis' })
         })
       }
     },

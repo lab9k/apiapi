@@ -57,8 +57,7 @@ export default {
   },
   async [actionTypes.FLUSH_CACHE] () {
     try {
-      console.warn('flush is not implemented in backend yet')
-      const url = '/api/flush'
+      const url = '/api/server/flush'
       const response = await fetch(url, { method: 'POST' })
       const json = await response.json()
       return json.ok === 1

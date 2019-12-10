@@ -34,7 +34,7 @@ export default {
     ...mapActions({ flush: 'api/' + actionTypes.FLUSH_CACHE }),
     async flushCache () {
       this.loadingFlushBtn = true
-      this.flushSuccess = await this.flush
+      this.flushSuccess = await this.flush()
       if (this.flushSuccess) {
         this.flushMessage = 'notifications.cacheFlushed'
       } else {
