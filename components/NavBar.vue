@@ -20,13 +20,6 @@
       class="mr-3"
     />
     <v-btn
-      :to="{name:'model-create'}"
-      v-t="'nav.models'"
-      text
-      exact
-      class="mr-3"
-    />
-    <v-btn
       :to="{name:'manage'}"
       v-t="'nav.server'"
       exact
