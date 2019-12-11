@@ -14,6 +14,7 @@ module.exports = {
   },
   create (req, res, next) {
     const newApi = new ApiModel(req.body)
+    newApi.meta = newApi.paths.meta
     ApiModel.addApi(newApi).then((doc) => {
       res.json(doc)
     }).catch(next)
