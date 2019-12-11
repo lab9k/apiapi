@@ -56,7 +56,7 @@ const defaultPathValue = {
 
 module.exports.PATH_TYPES = PATH_TYPES
 
-const ApiSchema = mongoose.Schema({
+const ApiSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
@@ -87,7 +87,10 @@ const ApiSchema = mongoose.Schema({
   requestData: {
     type: String,
     default: ''
-  }
+  },
+  meta: { type: Object, default: {} },
+  categories: { type: Array, default: [] },
+  types: { type: Array, default: [] }
 })
 
 ApiSchema.methods.raw = async function getRawData () {
@@ -124,7 +127,7 @@ ApiSchema.methods.invoke = function invokeApi () {
         const longitude = searchProp(element, 'longitude')
         const latitude = searchProp(element, 'latitude')
         const application = searchProp(element, 'application')
-        const meta = searchProp(element, 'meta')
+        const meta = this.meta
         const types = searchProp(element, 'types')
         const categories = searchProp(element, 'categories')
         return new Device({
