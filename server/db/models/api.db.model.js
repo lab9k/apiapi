@@ -148,6 +148,5 @@ ApiSchema.methods.invoke = function invokeApi () {
 const ApiModel = mongoose.model('Api', ApiSchema)
 ApiModel.getAll = () => ApiModel.find({})
 ApiModel.addApi = api => api.save()
-ApiModel.removeApi = name => ApiModel.deleteOne({ name })
 
 module.exports = ApiModel

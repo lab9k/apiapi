@@ -10,8 +10,8 @@ export default {
       commit(mutationTypes.UPDATE_API_LIST, [])
     }
   },
-  async [actionTypes.FETCH_API_DATA] ({ commit }, { id }) {
-    const url = `/api/data/raw/${id}`
+  async [actionTypes.FETCH_API_DATA] ({ commit }, { _id }) {
+    const url = `/api/data/raw/${_id}`
     const response = await fetch(url)
     const data = await response.json()
     commit(mutationTypes.UPDATE_SELECTED_API_DATA, data)
@@ -42,13 +42,13 @@ export default {
       return null
     }
   },
-  async [actionTypes.DELETE_API] ({ commit }, { name }) {
+  async [actionTypes.DELETE_API] ({ commit }, { _id }) {
     try {
-      const url = `/api/api/${name}`
+      const url = `/api/api/${_id}`
       const response = await fetch(url, { method: 'DELETE' })
       const json = await response.json()
-      if (json.ok === 1) {
-        commit(mutationTypes.DELETE_LOCAL_API, name)
+      if (json) {
+        commit(mutationTypes.DELETE_LOCAL_API, _id)
       } else {
         throw new Error(json)
       }

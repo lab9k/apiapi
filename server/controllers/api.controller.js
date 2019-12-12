@@ -7,8 +7,8 @@ module.exports = {
     }).catch(next)
   },
   findOne (req, res, next) {
-    const name = req.params.name
-    ApiModel.find({ name }).then((doc) => {
+    const { id } = req.params
+    ApiModel.findById(id).then((doc) => {
       res.json(doc)
     }).catch(next)
   },
@@ -20,14 +20,14 @@ module.exports = {
   },
   update (req, res, next) {
     const { body } = req
-    const { name } = req.params
-    ApiModel.replaceOne({ name }, body).then((doc) => {
+    const { id } = req.params
+    ApiModel.replaceOne({ _id: id }, body).then((doc) => {
       res.json(doc)
     }).catch(next)
   },
   delete (req, res, next) {
-    const { name } = req.params
-    ApiModel.removeApi(name).then((response) => {
+    const { id } = req.params
+    ApiModel.findByIdAndDelete(id).then((response) => {
       res.json(response)
     }).catch(next)
   }

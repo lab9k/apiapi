@@ -34,7 +34,7 @@ export default {
     ...mapActions({ fetchData: 'api/' + actionTypes.FETCH_API_DATA }),
     ...mapMutations({ clear: 'api/' + mutationTypes.CLEAR_SELECTION }),
     loadData () {
-      this.fetchData({ id: this.api._id })
+      this.fetchData(this.api)
     }
   }
 }
