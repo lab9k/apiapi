@@ -1,5 +1,5 @@
 <template>
-  <v-app-bar app>
+  <v-app-bar app color="primary" dark>
     <v-toolbar-title class="headline text-uppercase">
       <span>{{ $tc('api', 0) }}</span>
       <span class="font-weight-light">{{ $tc('api', 0) }}</span>
@@ -30,7 +30,8 @@
       :to="{name:'manage'}"
       v-t="'nav.server'"
       exact
-      color="primary"
+      color="white"
+      class="text--primary font-weight-black"
     />
   </v-app-bar>
 </template>

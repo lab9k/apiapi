@@ -1,5 +1,3 @@
-const colors = require('vuetify/es5/util/colors').default
-
 module.exports = {
   mode: 'universal',
   env: {
@@ -13,7 +11,7 @@ module.exports = {
       lang: 'en-GB'
     },
     titleTemplate: '%s - ' + process.env.npm_package_name,
-    title: process.env.npm_package_name || '',
+    title: process.env.npm_package_name || 'API api',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -26,7 +24,7 @@ module.exports = {
   /*
   ** Customize the progress-bar color
   */
-  loading: { color: '#fff' },
+  loading: { color: '#18807d' },
   /*
   ** Global CSS
   */
@@ -81,20 +79,19 @@ module.exports = {
   */
   vuetify: {
     customVariables: ['~/assets/variables.scss'],
+    defaultAssets: {
+      font: {
+        family: 'Open Sans'
+      }
+    },
     theme: {
-      dark: false,
       themes: {
-        dark: {
-          primary: colors.blue.darken2,
-          accent: colors.grey.darken3,
-          secondary: colors.amber.darken3,
-          info: colors.teal.lighten1,
-          warning: colors.amber.base,
-          error: colors.deepOrange.accent4,
-          success: colors.green.accent3
+        light: {
+          primary: '#005C86'
         }
       }
-    }
+    },
+    treeShake: true
   },
   /*
   ** Build configuration
