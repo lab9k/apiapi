@@ -17,10 +17,8 @@
 $ npm run install
 
 # start Redis
-$ redis-server
 
 # start MongoDB
-$ service mongod start
 
 # serve with hot reload at localhost:3000
 $ npm run dev
