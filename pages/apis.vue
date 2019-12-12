@@ -8,8 +8,7 @@
         md="6"
         sm="12"
         xs="12"
-        cols="12"
-      >
+        cols="12">
         <api-card :api="api" />
       </v-col>
       <v-col
@@ -17,8 +16,7 @@
         md="6"
         sm="12"
         xs="12"
-        cols="12"
-      >
+        cols="12">
         <v-card>
           <v-card-actions>
             <v-container>

@@ -7,8 +7,7 @@
       <v-col cols="4">
         <raw-display
           :title="$t('currentDataModel')"
-          :value="list"
-        />
+          :value="list" />
       </v-col>
     </v-row>
   </v-container>

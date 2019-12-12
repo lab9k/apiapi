@@ -4,37 +4,31 @@
       <v-select
         v-model="value.type"
         :items="types"
-        :label="$t('formLabels.type')"
-      />
+        :label="$t('formLabels.type')" />
     </v-col>
     <v-col class="pb-0">
       <v-text-field
         v-model="value.name"
-        :label="$t('formLabels.propertyName')"
-      />
+        :label="$t('formLabels.propertyName')" />
     </v-col>
     <v-col
       cols="1"
-      class="pb-0"
-    >
+      class="pb-0">
       <v-btn
         @click="addField"
         text
         icon
-        color="primary"
-      >
+        color="primary">
         <v-icon>mdi-plus-circle</v-icon>
       </v-btn>
     </v-col>
     <v-col
       cols="1"
-      class="pb-0"
-    >
+      class="pb-0">
       <v-btn
         @click="removeItem"
         icon
-        color="error"
-      >
+        color="error">
         <v-icon>mdi-minus-circle</v-icon>
       </v-btn>
     </v-col>
@@ -44,8 +38,7 @@
         :key="extra.id"
         :item="extra"
         @remove="removeExtra"
-        class="ml-8"
-      />
+        class="ml-8" />
     </v-col>
   </v-row>
 </template>

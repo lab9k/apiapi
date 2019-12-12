@@ -1,8 +1,14 @@
 <template>
   <v-container>
-    <v-btn :to="'apis'" v-t="'nav.apis'" />
-    <v-btn @click="invokeAll" v-t="'invoke_all'" class="ml-5" />
-    <j-s-o-n-view :data="allData" v-if="jsonVisible" />
+    <v-btn :to="'apis'">
+      {{ $t('nav.apis') }}
+    </v-btn>
+    <v-btn @click="invokeAll"
+           class="ml-5">
+      {{ $t('invoke_all') }}
+    </v-btn>
+    <j-s-o-n-view :data="allData"
+                  v-if="jsonVisible" />
   </v-container>
 </template>
 
