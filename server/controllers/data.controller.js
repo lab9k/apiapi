@@ -9,14 +9,14 @@ module.exports = {
     }).then(allResults => res.json(flatten(allResults))).catch(next)
   },
   getFromApi (req, res, next) {
-    const { name } = req.params
-    ApiModel.find({ name }).then((doc) => {
+    const { id } = req.params
+    ApiModel.findById(id).then((doc) => {
       doc.invoke().then(result => res.json(result))
     }).catch(next)
   },
   getRawDataFromApi (req, res, next) {
-    const { name } = req.params
-    ApiModel.findOne({ name }).then((api) => {
+    const { id } = req.params
+    ApiModel.findById(id).then((api) => {
       api.raw().then(result => res.json(result))
     }).catch(next)
   }

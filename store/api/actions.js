@@ -10,8 +10,8 @@ export default {
       commit(mutationTypes.UPDATE_API_LIST, [])
     }
   },
-  async [actionTypes.FETCH_API_DATA] ({ commit }, { name }) {
-    const url = `/api/data/raw/${name}`
+  async [actionTypes.FETCH_API_DATA] ({ commit }, { id }) {
+    const url = `/api/data/raw/${id}`
     const response = await fetch(url)
     const data = await response.json()
     commit(mutationTypes.UPDATE_SELECTED_API_DATA, data)
