@@ -5,12 +5,12 @@ const router = express.Router()
 
 router.get('/', ApiController.findAll)
 
-router.get('/:name', ApiController.findOne)
+router.get('/:id', ApiController.findOne)
 
 router.post('/', ApiController.create)
 
-router.put('/:name', ApiController.update)
+router.put('/:id', ApiController.update)
 
-router.delete('/:name', ApiController.delete)
+router.delete('/:id', ApiController.delete)
 
 module.exports = router

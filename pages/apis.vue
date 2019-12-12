@@ -37,7 +37,7 @@
   </v-container>
 </template>
 <script>
-import { mapGetters, mapActions } from 'vuex'
+import { mapGetters } from 'vuex'
 import { actionTypes, getterTypes } from '~/store/api'
 import ApiCard from '@/components/ApiCard.vue'
 
@@ -47,11 +47,8 @@ export default {
   computed: {
     ...mapGetters({ apis: 'api/' + getterTypes.APIS })
   },
-  created () {
-    this.fetch()
-  },
-  methods: {
-    ...mapActions({ fetch: 'api/' + actionTypes.FETCH_APIS })
+  async fetch ({ store }) {
+    await store.dispatch('api/' + actionTypes.FETCH_APIS)
   }
 }
 </script>

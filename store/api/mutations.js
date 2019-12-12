@@ -16,7 +16,7 @@ export default {
     // state.all_data = data
     state.all_data = shuffle(slice(data, 0, 250))
   },
-  [mutationTypes.DELETE_LOCAL_API] (state, name) {
-    state.apis = state.apis.filter(el => el.name !== name)
+  [mutationTypes.DELETE_LOCAL_API] (state, id) {
+    state.apis = state.apis.filter(el => el._id !== id)
   }
 }
