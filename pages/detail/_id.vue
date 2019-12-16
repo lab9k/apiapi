@@ -1,7 +1,9 @@
 <template>
   <div v-if="api">
     <h1 v-text="api.name" />
-    <v-btn @click="loadData" v-t="'actions.load'" />
+    <v-btn @click="loadData">
+      {{ $t('actions.load') }}
+    </v-btn>
     {{ selectedData }}
   </div>
 </template>

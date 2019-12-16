@@ -7,32 +7,33 @@
     <v-spacer />
     <v-btn
       :to="{name:'index'}"
-      v-t="'nav.home'"
       text
       exact
-      class="mr-3"
-    />
+      class="mr-3">
+      {{ $t('nav.home') }}
+    </v-btn>
     <v-btn
       :to="{name:'apis'}"
-      v-t="'nav.apis'"
       text
       exact
-      class="mr-3"
-    />
+      class="mr-3">
+      {{ $t('nav.apis') }}
+    </v-btn>
     <v-btn
       :to="{name:'model-create'}"
-      v-t="'nav.models'"
       text
       exact
-      class="mr-3"
-    />
+      class="mr-3">
+      {{ $t('nav.models') }}
+    </v-btn>
     <v-btn
       :to="{name:'manage'}"
-      v-t="'nav.server'"
       exact
       color="white"
       class="text--primary font-weight-black"
-    />
+    >
+      {{ $t('nav.server') }}
+    </v-btn>
   </v-app-bar>
 </template>
 <script>

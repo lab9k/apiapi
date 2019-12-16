@@ -2,16 +2,14 @@
   <div class="mstepper">
     <v-stepper
       v-model="step"
-      class="mt-5"
-    >
+      class="mt-5">
       <v-stepper-header>
         <template v-for="(currentStep, index) in steps">
           <v-stepper-step
             :complete="step > index + 1"
             :editable="true"
             :key="'header-' + index"
-            :step="index + 1"
-          >
+            :step="index + 1">
             {{ $t('steps.' + currentStep) }}
           </v-stepper-step>
           <v-divider v-if="index < steps.length - 1" />
@@ -19,32 +17,35 @@
       </v-stepper-header>
 
       <v-stepper-items>
-        <v-stepper-content v-for="(currentStep, index) in steps" :step="index + 1" :key="'content-' + index">
-          <v-container v-if="currentStep === 'meta'" fluid>
+        <v-stepper-content v-for="(currentStep, index) in steps"
+                           :step="index + 1" :key="'content-' + index">
+          <v-container v-if="currentStep === 'meta'"
+                       fluid>
             <extra-fields-input
               :ref="'stepper-' + (index + 1)"
-              :label="$t('steps.' + currentStep)"
-            />
+              :label="$t('steps.' + currentStep)" />
           </v-container>
-          <v-container v-else fluid>
+          <v-container v-else
+                       fluid>
             <const-or-value-input
               :ref="'stepper-' + (index + 1)"
-              :label="$t('steps.' + currentStep)"
-            />
+              :label="$t('steps.' + currentStep)" />
           </v-container>
           <v-btn
             v-if="index < steps.length - 1"
             @click="nextStep(index + 1)"
-            v-t="'actions.continue'"
-            color="primary"
-          />
+            color="primary">
+            {{ $t('actions.continue') }}
+          </v-btn>
           <v-btn
             v-else
             @click="completeStepper()"
-            v-t="'actions.complete'"
-            color="primary"
-          />
-          <v-btn v-t="'actions.cancel'" text />
+            color="primary">
+            {{ $t('actions.complete') }}
+          </v-btn>
+          <v-btn text>
+            {{ $t('actions.cancel') }}
+          </v-btn>
         </v-stepper-content>
       </v-stepper-items>
     </v-stepper>

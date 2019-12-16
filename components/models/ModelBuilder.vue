@@ -1,15 +1,16 @@
 <template>
   <v-container fluid>
     <v-row>
-      <v-btn @click="addField" v-t="'actions.add'" />
+      <v-btn @click="addField">
+        {{ $t('actions.add') }}
+      </v-btn>
     </v-row>
     <v-col>
       <abstract-field
         v-for="prop in value"
         :key="prop.id"
         :item="prop"
-        @remove="removeItem"
-      />
+        @remove="removeItem" />
     </v-col>
   </v-container>
 </template>

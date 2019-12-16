@@ -10,18 +10,19 @@
     </v-row>
 
     <v-container fluid>
-      <v-row v-for="(field,index) in fields" :key="`field-${index}`">
+      <v-row v-for="(field,index) in fields"
+             :key="`field-${index}`">
         <v-col cols="3">
           <v-text-field
             v-model="fields[index]"
             :rules="propertyNameRules"
             required
             label="Property name"
-            prepend-icon="mdi-help-circle-outline"
-          />
+            prepend-icon="mdi-help-circle-outline" />
         </v-col>
         <v-col cols="9">
-          <const-or-value-input :label="field" :ref="index" />
+          <const-or-value-input :label="field"
+                                :ref="index" />
         </v-col>
       </v-row>
     </v-container>

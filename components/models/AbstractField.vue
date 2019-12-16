@@ -4,18 +4,15 @@
     <primitive-field
       v-if="fieldType === 'Primitive'"
       v-model="item"
-      @remove="removeItem"
-    />
+      @remove="removeItem" />
     <array-field
       v-if="fieldType === 'Array'"
       v-model="item"
-      @remove="removeItem"
-    />
+      @remove="removeItem" />
     <object-field
       v-if="fieldType==='Object'"
       v-model="item"
-      @remove="removeItem"
-    />
+      @remove="removeItem" />
   </div>
 </template>
 <script>
