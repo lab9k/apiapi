@@ -6,26 +6,22 @@
           :items="optionItems"
           v-model="selection"
           :label="$t('formLabels.type')"
-          required
-        />
+          required />
         <v-text-field
           :rules="rules"
           :label="label"
           v-model="value"
           :outlined="selection === 'path'"
           :readonly="selection === 'path'"
-          required
-        />
+          required />
       </div>
     </v-col>
     <v-col
       v-if="selection === 'path'"
-      cols="12"
-    >
+      cols="12">
       <j-s-o-n-view
         :data="selected_data"
-        @selected="updateValue"
-      />
+        @selected="updateValue" />
     </v-col>
   </v-row>
 </template>

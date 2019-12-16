@@ -1,38 +1,34 @@
 <template>
   <v-dialog
     v-model="visible"
-    width="500"
-  >
+    width="500">
     <template v-slot:activator="{ on }">
       <slot
         v-on="on"
-        name="btn"
-      />
+        name="btn" />
     </template>
     <v-card>
       <v-card-text>
         <p
           v-for="[key, value] in paths"
-          :key="key"
-        >
+          :key="key">
           <v-text-field
             :ref="key"
             :value="value.value"
-            :label="key"
-          />
+            :label="key" />
         </p>
       </v-card-text>
       <v-card-actions>
         <v-btn
           @click="submit"
-          v-t="'actions.submit'"
-          color="success"
-        />
+          color="success">
+          {{ $t('actions.submit') }}
+        </v-btn>
         <v-btn
           @click="reject"
-          v-t="'actions.reject'"
-          color="error"
-        />
+          color="error">
+          {{ $t('actions.reject') }}
+        </v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>

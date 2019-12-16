@@ -2,104 +2,91 @@
   <v-container>
     <v-form
       ref="form"
-      v-model="valid"
-    >
+      v-model="valid">
       <v-text-field
         v-model="name"
         :rules="nameRules"
         :label="$t('formLabels.name')"
-        required
-      />
+        required />
 
       <v-text-field
         v-model="url"
         :rules="urlRules"
         :label="$t('formLabels.url')"
-        required
-      />
+        required />
 
       <v-select
         v-model="authMethod"
         :items="authMethodItems"
         :rules="authMethodRules"
         :label="$t('formLabels.authMethod')"
-        required
-      />
+        required />
 
       <v-text-field
         v-model="apiKey"
         v-if="authMethod === 'api_key'"
-        :label="$t('formLabels.apiKey')"
-      />
+        :label="$t('formLabels.apiKey')" />
       <v-sheet v-if="authMethod === 'custom_headers'">
         <v-row>
           <v-btn
             @click="addHeader"
-            v-t="'actions.addHeader'"
             color="success lighten-1"
-            class="mr-4"
-          />
+            class="mr-4">
+            {{ $t('actions.addHeader') }}
+          </v-btn>
           <v-btn
             @click="removeHeader"
-            v-t="'actions.removeHeader'"
-            color="error lighten-1"
-          />
+            color="error lighten-1">
+            {{ $t('actions.removeHeader') }}
+          </v-btn>
         </v-row>
         <custom-header-input
           v-for="n in customHeaders"
-          :key="n"
-        />
+          :key="n" />
       </v-sheet>
 
       <v-btn
         :disabled="!valid"
         @click="validate"
-        v-t="'actions.validate'"
         color="success lighten-1"
-        class="mr-4"
-      />
+        class="mr-4">
+        {{ $t('actions.validate') }}
+      </v-btn>
       <v-btn
         @click="reset"
-        v-t="'actions.reset'"
         color="error"
-        class="mr-4"
-      />
+        class="mr-4">
+        {{ $t('actions.reset') }}
+      </v-btn>
       <v-progress-circular
         v-if="loadingData"
         indeterminate
-        color="primary"
-      />
+        color="primary" />
     </v-form>
     <v-container
       v-if="validated"
-      fluid
-    >
+      fluid>
       <v-switch
         v-model="basePathSelectorVisible"
-        :label="$t('formLabels.setBasePath')"
-      />
+        :label="$t('formLabels.setBasePath')" />
       <v-text-field
         v-if="basePathSelectorVisible"
-        @change="setBasePath"
-      />
+        @change="setBasePath" />
     </v-container>
 
     <device-stepper
       v-if="validated"
-      @complete="pathsCompleted"
-    />
+      @complete="pathsCompleted" />
     <confirm-creation-dialog
       ref="confirmDialog"
       v-if="dialogVisible"
       :apiData="apiData"
-      @submitted="submitted"
-    >
+      @submitted="submitted">
       <template v-slot:btn>
         <v-btn
           @click="$refs.confirmDialog.toggle()"
           v-t="'actions.confirm'"
-          class="mt-5"
-        />
+          class="mt-5" />
       </template>
     </confirm-creation-dialog>
   </v-container>

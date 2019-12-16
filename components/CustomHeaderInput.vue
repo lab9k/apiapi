@@ -3,14 +3,12 @@
     <v-col>
       <v-text-field
         v-model="name"
-        :label="$t('formLabels.headerName')"
-      />
+        :label="$t('formLabels.headerName')" />
     </v-col>
     <v-col>
       <v-text-field
         v-model="value"
-        :label="$t('formLabels.headerValue')"
-      />
+        :label="$t('formLabels.headerValue')" />
     </v-col>
   </v-row>
 </template>
