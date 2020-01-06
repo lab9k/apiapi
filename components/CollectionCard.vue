@@ -11,9 +11,8 @@
       </div>
     </v-card-text>
     <v-card-actions>
-      <v-btn :to="{ name: 'collection', params:{id:collection._id} }"
+      <v-btn :to="{ name: 'collection-id', params:{id:collection._id} }"
              color="secondary" outlined>
-        >
         {{ $t('actions.details') }}
       </v-btn>
       <v-btn @click="deleteCollection" color="error"
