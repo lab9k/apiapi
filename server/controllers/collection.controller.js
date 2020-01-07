@@ -10,7 +10,7 @@ module.exports = {
   findById (req, res, next) {
     const { id } = req.params
     return CollectionModel.findById(id)
-      .populate({ path: 'apis' })
+      .populate('apis')
       .exec()
       .then(result => res.json(result))
       .catch(err => next(err))

@@ -2,25 +2,32 @@
   <v-container>
     <p>{{ collection.name }}</p>
     <p>{{ collection.description }}</p>
-    <p>TODO: apis in collection</p>
+    <api-list :collection="collection" />
   </v-container>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
-import { getterTypes } from '~/store/collections'
+import { mapGetters, mapActions } from 'vuex'
+import ApiList from '../../components/ApiList.vue'
+import { getterTypes, actionTypes } from '~/store/collections'
+
 export default {
   name: 'CollectionDetail',
+  components: { ApiList },
   data () {
     return {
-      ...this.$route.params
+      id: this.$route.params.id,
+      collection: { name: '', description: '', apis: [], _id: '' }
     }
   },
   computed: {
-    ...mapGetters('collections', { collections: getterTypes.ALL_COLLECTIONS }),
-    collection () {
-      return this.collections.find(el => el._id === this.id)
-    }
+    ...mapGetters('collections', { collections: getterTypes.ALL_COLLECTIONS })
+  },
+  mounted () {
+    this.getCollectionById(this.id).then(doc => (this.collection = doc))
+  },
+  methods: {
+    ...mapActions('collections', { getCollectionById: actionTypes.FETCH_COLLECTION_BY_ID })
   }
 }
 </script>

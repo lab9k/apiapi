@@ -32,7 +32,7 @@
   },
   "invoke_all": "invoke all",
   "nav": {
-    "apis": "APIs",
+    "collections": "collections",
     "home": "Home",
     "models": "Models",
     "server": "Manage server"

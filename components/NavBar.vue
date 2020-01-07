@@ -14,11 +14,11 @@
       {{ $t('nav.home') }}
     </v-btn>
     <v-btn
-      :to="{name:'apis'}"
+      :to="{name:'collection'}"
       text
       exact
       class="mr-3">
-      {{ $t('nav.apis') }}
+      {{ $t('nav.collections') }}
     </v-btn>
     <v-btn
       :to="{name:'model-create'}"

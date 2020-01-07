@@ -9,7 +9,7 @@ const CollectionSchema = mongoose.Schema({
     type: String,
     required: false
   },
-  apis: [{ type: mongoose.Schema.Types.ObjectId, ref: 'collection' }]
+  apis: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Api' }]
 })
 
 const CollectionModel = mongoose.model('Collection', CollectionSchema)

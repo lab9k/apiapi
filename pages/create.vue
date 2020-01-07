@@ -127,7 +127,8 @@ export default {
       devicePaths: false,
       dialogVisible: false,
       basePath: '',
-      basePathSelectorVisible: false
+      basePathSelectorVisible: false,
+      forCollection: this.$route.params.forCollection
     }
   },
   computed: {
@@ -136,7 +137,8 @@ export default {
         paths: this.devicePaths,
         url: this.url,
         name: this.name,
-        authMethod: this.authMethod
+        authMethod: this.authMethod,
+        forCollection: this.forCollection
       }
       if (this.basePathSelectorVisible) {
         data.dataPath = this.basePath
