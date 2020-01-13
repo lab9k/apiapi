@@ -1,5 +1,6 @@
 import { forEach } from 'lodash'
 import { actionTypes, mutationTypes } from './types'
+
 export default {
   async [actionTypes.FETCH_ALL] ({ commit }) {
     try {
@@ -39,6 +40,17 @@ export default {
       return doc
     } catch (e) {
       commit(mutationTypes.UPDATE_COLLECTION_LIST, null)
+      return null
+    }
+  },
+  async [actionTypes.DELETE_COLLECTION] ({ commit }, id) {
+    try {
+      const url = `${process.env.baseUrl}/api/collection/${id}`
+      const response = await fetch(url, { method: 'DELETE' })
+      const json = await response.json()
+      commit(mutationTypes.DELETED_COLLECTION, json)
+    } catch (e) {
+      console.error(e)
       return null
     }
   }

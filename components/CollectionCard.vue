@@ -15,7 +15,7 @@
              color="secondary" outlined>
         {{ $t('actions.details') }}
       </v-btn>
-      <v-btn @click="deleteCollection" color="error"
+      <v-btn @click="deleteCollection(collection._id)" color="error"
              outlined>
         {{ $t('actions.delete') }}
       </v-btn>
@@ -24,6 +24,8 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+import { actionTypes } from '~/store/collections'
 export default {
   name: 'CollectionCard',
   props: {
@@ -33,9 +35,7 @@ export default {
     }
   },
   methods: {
-    deleteCollection () {
-      console.log(this.collection)
-    }
+    ...mapActions('collections', { deleteCollection: actionTypes.DELETE_COLLECTION })
   }
 }
 </script>
