@@ -87,10 +87,6 @@ const ApiSchema = mongoose.Schema({
   requestData: {
     type: String,
     default: ''
-  },
-  meta: {
-    type: Object,
-    default: {}
   }
 })
 
