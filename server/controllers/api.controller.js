@@ -22,10 +22,6 @@ module.exports = {
         return api.save()
       }).then(doc => res.json(doc))
       .catch(next)
-    // const newApi = new ApiModel(req.body)
-    // ApiModel.addApi(newApi).then((doc) => {
-    //   res.json(doc)
-    // }).catch(next)
   },
   update (req, res, next) {
     const { body } = req
