@@ -40,7 +40,7 @@ import { actionTypes, getterTypes } from '~/store/api'
 import ApiCard from '@/components/ApiCard.vue'
 
 export default {
-  name: 'ApiList',
+  name: 'DeprecatedApiList',
   components: { ApiCard },
   computed: {
     ...mapGetters({ apis: 'api/' + getterTypes.APIS })

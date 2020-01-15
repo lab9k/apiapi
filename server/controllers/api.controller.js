@@ -1,4 +1,5 @@
 const ApiModel = require('../db/models/api.db.model')
+const CollectionModel = require('../db/models/collection.model')
 
 module.exports = {
   findAll (req, res, next) {
@@ -13,10 +14,14 @@ module.exports = {
     }).catch(next)
   },
   create (req, res, next) {
-    const newApi = new ApiModel(req.body)
-    ApiModel.addApi(newApi).then((doc) => {
-      res.json(doc)
-    }).catch(next)
+    const { forCollection } = req.body
+    const api = new ApiModel(req.body)
+    return CollectionModel.update({ _id: forCollection }, { $push: { apis: api } })
+      .exec()
+      .then(() => {
+        return api.save()
+      }).then(doc => res.json(doc))
+      .catch(next)
   },
   update (req, res, next) {
     const { body } = req

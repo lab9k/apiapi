@@ -60,7 +60,7 @@ const ApiSchema = mongoose.Schema({
   name: {
     type: String,
     required: true,
-    unique: true
+    unique: false
   },
   authMethod: {
     type: String,
