@@ -1,14 +1,9 @@
 <template>
   <v-card>
+    <v-card-title v-text="collection.name"
+                  class="headline" />
     <v-card-text>
-      <p v-text="collection.name"
-         class="display-1 text--primary" />
-      <p>
-        {{ $t('adjective') }}
-      </p>
-      <div class="text--primary">
-        {{ collection.description }}
-      </div>
+      <p v-t="collection.description" />
     </v-card-text>
     <v-card-actions>
       <v-btn :to="{ name: 'collection-id', params:{id:collection._id} }"

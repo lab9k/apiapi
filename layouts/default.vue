@@ -2,9 +2,7 @@
   <v-app>
     <NavBar />
     <v-content>
-      <div class="pt-10">
-        <nuxt />
-      </div>
+      <nuxt />
     </v-content>
   </v-app>
 </template>

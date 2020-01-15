@@ -94,9 +94,9 @@
 <script>
 import { mapGetters, mapActions, mapMutations } from 'vuex'
 import { get as getProp } from 'lodash'
-import CustomHeaderInput from '../components/CustomHeaderInput.vue'
-import ConfirmCreationDialog from '../components/ConfirmCreationDialog.vue'
-import DeviceStepper from '../components/DeviceStepper.vue'
+import CustomHeaderInput from '~/components/CustomHeaderInput.vue'
+import ConfirmCreationDialog from '~/components/ConfirmCreationDialog.vue'
+import DeviceStepper from '~/components/DeviceStepper.vue'
 import { mutationTypes, actionTypes, getterTypes } from '~/store/api'
 
 export default {
@@ -128,7 +128,7 @@ export default {
       dialogVisible: false,
       basePath: '',
       basePathSelectorVisible: false,
-      forCollection: this.$route.params.forCollection
+      forCollection: this.$route.params.collection
     }
   },
   computed: {
@@ -192,7 +192,7 @@ export default {
             // TODO: handle error
           }
           this.dialogVisible = false
-          this.$router.push({ name: 'apis' })
+          this.$router.push({ name: 'collection-id', params: { id: this.forCollection } })
         })
       }
     },

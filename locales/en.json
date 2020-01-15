@@ -52,5 +52,13 @@
     "reference": "Reference",
     "types": "Types",
     "meta": "Meta"
+  },
+  "collections": {
+    "name": "Collections",
+    "add": "Add new collection"
+  },
+  "apis": {
+    "name": "API's",
+    "add": "Add new API"
   }
 }
