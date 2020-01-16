@@ -2,6 +2,7 @@
   <v-app>
     <NavBar />
     <v-content>
+      <breadcrumbs />
       <nuxt />
     </v-content>
   </v-app>
@@ -9,9 +10,10 @@
 
 <script>
 import NavBar from '~/components/NavBar.vue'
+import Breadcrumbs from '~/components/molecules/breadcrumbs'
 
 export default {
   name: 'App',
-  components: { NavBar }
+  components: { Breadcrumbs, NavBar }
 }
 </script>

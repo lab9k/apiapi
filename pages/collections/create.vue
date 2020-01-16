@@ -37,9 +37,18 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+import page from '~/mixins/page'
 import { actionTypes } from '~/store/collections'
+
 export default {
   name: 'CreateCollection',
+  mixins: [page],
+  head () {
+    return {
+      title: 'create collection'
+    }
+  },
   data () {
     return {
       valid: true,
@@ -59,12 +68,16 @@ export default {
       }
     }
   },
+  mounted () {
+    this.setCrumbs([{ label: 'home', route: { name: 'index' } }, { label: 'create collection' }])
+  },
   methods: {
+    ...mapActions('collections', { create: actionTypes.CREATE }),
     submitCollection (ev) {
       ev.preventDefault()
       if (this.validate()) {
-        this.$store.dispatch('collections/' + actionTypes.CREATE, this.collection).then((doc) => {
-          this.$router.push({ name: 'collection' })
+        this.create(this.collection).then((doc) => {
+          this.$router.push({ name: 'collections-collection', params: { collection: doc._id } })
         })
       }
       return false
@@ -75,7 +88,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-
-</style>

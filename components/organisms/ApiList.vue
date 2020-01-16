@@ -4,7 +4,7 @@
                color="grey lighten-3">
       <v-toolbar-title v-t="'apis.name'" />
       <v-spacer />
-      <v-btn :to="{ name: 'api-collection-create', params: { collection: collectionId }}"
+      <v-btn :to="{ name: 'collections-collection-apis-create', params: { collection: collectionId }}"
              icon>
         <v-icon>mdi-plus</v-icon>
       </v-btn>
@@ -13,13 +13,14 @@
       <v-row>
         <v-col v-for="api in apis"
                :key="api._id" md="4">
-          <api-card :api="api" />
+          <api-card :api="api"
+                    :collectionId="collectionId" />
         </v-col>
       </v-row>
     </v-container>
     <v-card-actions>
       <v-spacer />
-      <v-btn :to="{name:'api-collection-create', params: { collection: collectionId }}"
+      <v-btn :to="{name:'collections-collection-apis-create', params: { collection: collectionId }}"
              text>
         <v-icon>mdi-plus</v-icon> <span v-t="'apis.add'" />
       </v-btn>

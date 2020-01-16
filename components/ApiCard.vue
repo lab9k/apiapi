@@ -9,7 +9,7 @@
       </div>
     </v-card-text>
     <v-card-actions>
-      <v-btn :to="{ name: 'api-id', params: { id: api._id } }"
+      <v-btn :to="{ name: 'collections-collection-apis-api', params: { api: api._id, collection: collectionId } }"
              color="secondary" outlined>
         {{ $t('actions.details') }}
       </v-btn>
@@ -29,6 +29,10 @@ export default {
   props: {
     api: {
       type: Object,
+      required: true
+    },
+    collectionId: {
+      type: String,
       required: true
     }
   },

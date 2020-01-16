@@ -6,7 +6,7 @@
       <p v-t="collection.description" />
     </v-card-text>
     <v-card-actions>
-      <v-btn :to="{ name: 'collection-id', params:{id:collection._id} }"
+      <v-btn :to="{ name: 'collections-collection', params:{collection:collection._id} }"
              color="secondary" outlined>
         {{ $t('actions.details') }}
       </v-btn>

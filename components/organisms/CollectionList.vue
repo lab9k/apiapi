@@ -4,7 +4,7 @@
                color="grey lighten-3">
       <v-toolbar-title v-t="'collections.name'" />
       <v-spacer />
-      <v-btn :to="{name:'collection-create'}"
+      <v-btn :to="{name:'collections-create'}"
              icon>
         <v-icon>mdi-plus</v-icon>
       </v-btn>
@@ -19,7 +19,7 @@
     </v-container>
     <v-card-actions>
       <v-spacer />
-      <v-btn :to="{name:'collection-create'}"
+      <v-btn :to="{name:'collections-create'}"
              text>
         <v-icon>mdi-plus</v-icon> <span v-t="'collections.add'" />
       </v-btn>

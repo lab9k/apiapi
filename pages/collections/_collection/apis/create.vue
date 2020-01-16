@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <v-container fluid>
     <v-form
       ref="form"
       v-model="valid">
@@ -97,7 +97,9 @@ import { get as getProp } from 'lodash'
 import CustomHeaderInput from '~/components/CustomHeaderInput.vue'
 import ConfirmCreationDialog from '~/components/ConfirmCreationDialog.vue'
 import DeviceStepper from '~/components/DeviceStepper.vue'
-import { mutationTypes, actionTypes, getterTypes } from '~/store/api'
+import { mutationTypes, actionTypes, getterTypes as apiGetters } from '~/store/api'
+import { getterTypes as collectionGetters } from '~/store/collections'
+import page from '~/mixins/page'
 
 export default {
   name: 'ApiCreate',
@@ -105,6 +107,12 @@ export default {
     CustomHeaderInput,
     DeviceStepper,
     ConfirmCreationDialog
+  },
+  mixins: [page],
+  head () {
+    return {
+      title: 'create API'
+    }
   },
   data () {
     return {
@@ -145,7 +153,18 @@ export default {
       }
       return data
     },
-    ...mapGetters({ rawData: 'api/' + getterTypes.SELECTED_API_DATA })
+    ...mapGetters('api', { rawData: apiGetters.SELECTED_API_DATA }),
+    ...mapGetters('collections', { collectionById: collectionGetters.COLLECTION_BY_ID }),
+    collection () {
+      console.debug(this.forCollection)
+      return this.collectionById(this.forCollection)
+    }
+  },
+  mounted () {
+    this.setCrumbs([
+      { label: 'home', route: { name: 'index' } },
+      { label: this.collection.name, route: { name: 'collections-collection', params: { collection: this.forCollection } } },
+      { label: 'create api' }])
   },
   methods: {
     ...mapActions({

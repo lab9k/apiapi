@@ -2,31 +2,13 @@
   <v-app-bar app
              color="primary" dark>
     <v-toolbar-title class="headline text-uppercase">
-      <span>{{ $tc('api', 0) }}</span>
-      <span class="font-weight-light">{{ $tc('api', 0) }}</span>
+      <nuxt-link :to="{name: 'index'}"
+                 class="white--text">
+        <span>{{ $tc('api', 0) }}</span>
+        <span class="font-weight-light">{{ $tc('api', 0) }}</span>
+      </nuxt-link>
     </v-toolbar-title>
     <v-spacer />
-    <v-btn
-      :to="{name:'index'}"
-      text
-      exact
-      class="mr-3">
-      {{ $t('nav.home') }}
-    </v-btn>
-    <v-btn
-      :to="{name:'collection'}"
-      text
-      exact
-      class="mr-3">
-      {{ $t('nav.collections') }}
-    </v-btn>
-    <v-btn
-      :to="{name:'model-create'}"
-      text
-      exact
-      class="mr-3">
-      {{ $t('nav.models') }}
-    </v-btn>
     <v-btn
       :to="{name:'manage'}"
       exact

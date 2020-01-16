@@ -1,6 +1,7 @@
 export const actionTypes = {
   FETCH_APIS: 'fetch_apis',
   FETCH_API_DATA: 'api_data',
+  FETCH_API_BY_ID: 'fetch_api_by_id',
   INVOKE_ALL: 'invoke_all',
   CREATE_API: 'create_api',
   DELETE_API: 'delete_api',
