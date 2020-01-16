@@ -1,6 +1,6 @@
 <template>
   <v-container fluid>
-    <h1 v-t="collection.name"
+    <h1 v-text="collection.name"
         class="mb-5" />
     <p v-text="collection.description" />
     <v-row>
@@ -44,11 +44,7 @@ export default {
     await store.dispatch('collections/' + actionTypes.FETCH_COLLECTION_BY_ID, params.collection)
   },
   mounted () {
-    this.setCrumbs([{ label: 'home', route: { name: 'index' } }, { label: this.collection.name }])
+    this.setCrumbs([{ label: this.$t('nav.home'), route: { name: 'index' } }, { label: this.collection.name }])
   }
 }
 </script>
-
-<style scoped>
-
-</style>

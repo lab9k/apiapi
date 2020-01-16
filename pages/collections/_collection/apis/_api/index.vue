@@ -51,12 +51,12 @@ export default {
       return this.collectionById(this.collectionId)
     }
   },
-  async fetch ({ store, route }) {
-    await store.dispatch('api/' + actionTypes.FETCH_API_BY_ID, route.params.api)
+  async fetch ({ store, params }) {
+    await store.dispatch('api/' + actionTypes.FETCH_API_BY_ID, params.api)
   },
   mounted () {
     this.setCrumbs([
-      { label: 'home', route: { name: 'index' } },
+      { label: this.$t('nav.home'), route: { name: 'index' } },
       { label: this.collection.name, route: { name: 'collections-collection', params: { collection: this.collectionId } } },
       { label: this.api.name }
     ])

@@ -20,7 +20,7 @@ export default {
   mixins: [page],
   head () {
     return {
-      title: 'home'
+      title: this.$t('nav.home')
     }
   },
   computed: {

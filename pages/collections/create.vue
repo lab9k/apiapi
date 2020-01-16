@@ -46,7 +46,7 @@ export default {
   mixins: [page],
   head () {
     return {
-      title: 'create collection'
+      title: this.$t('nav.createCollection')
     }
   },
   data () {
@@ -69,7 +69,7 @@ export default {
     }
   },
   mounted () {
-    this.setCrumbs([{ label: 'home', route: { name: 'index' } }, { label: 'create collection' }])
+    this.setCrumbs([{ label: this.$t('nav.home'), route: { name: 'index' } }, { label: this.$t('nav.createCollection') }])
   },
   methods: {
     ...mapActions('collections', { create: actionTypes.CREATE }),

@@ -3,7 +3,7 @@
     <v-card-title v-text="collection.name"
                   class="headline" />
     <v-card-text>
-      <p v-t="collection.description" />
+      <p v-text="collection.description" />
     </v-card-text>
     <v-card-actions>
       <v-btn :to="{ name: 'collections-collection', params:{collection:collection._id} }"

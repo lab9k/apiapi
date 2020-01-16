@@ -1,68 +1,72 @@
 <template>
   <v-container fluid>
-    <v-form
-      ref="form"
-      v-model="valid">
-      <v-text-field
-        v-model="name"
-        :rules="nameRules"
-        :label="$t('formLabels.name')"
-        required />
+    <v-row>
+      <v-col lg="6">
+        <v-form
+                ref="form"
+                v-model="valid">
+          <v-text-field
+                  v-model="name"
+                  :rules="nameRules"
+                  :label="$t('formLabels.name')"
+                  required />
 
-      <v-text-field
-        v-model="url"
-        :rules="urlRules"
-        :label="$t('formLabels.url')"
-        required />
+          <v-text-field
+                  v-model="url"
+                  :rules="urlRules"
+                  :label="$t('formLabels.url')"
+                  required />
 
-      <v-select
-        v-model="authMethod"
-        :items="authMethodItems"
-        :rules="authMethodRules"
-        :label="$t('formLabels.authMethod')"
-        required />
+          <v-select
+                  v-model="authMethod"
+                  :items="authMethodItems"
+                  :rules="authMethodRules"
+                  :label="$t('formLabels.authMethod')"
+                  required />
 
-      <v-text-field
-        v-model="apiKey"
-        v-if="authMethod === 'api_key'"
-        :label="$t('formLabels.apiKey')" />
-      <v-sheet v-if="authMethod === 'custom_headers'">
-        <v-row>
+          <v-text-field
+                  v-model="apiKey"
+                  v-if="authMethod === 'api_key'"
+                  :label="$t('formLabels.apiKey')" />
+          <v-sheet v-if="authMethod === 'custom_headers'">
+            <v-row>
+              <v-btn
+                      @click="addHeader"
+                      color="success lighten-1"
+                      class="mr-4">
+                {{ $t('actions.addHeader') }}
+              </v-btn>
+              <v-btn
+                      @click="removeHeader"
+                      color="error lighten-1">
+                {{ $t('actions.removeHeader') }}
+              </v-btn>
+            </v-row>
+            <custom-header-input
+                    v-for="n in customHeaders"
+                    :key="n" />
+          </v-sheet>
+
           <v-btn
-            @click="addHeader"
-            color="success lighten-1"
-            class="mr-4">
-            {{ $t('actions.addHeader') }}
+                  :disabled="!valid"
+                  @click="validate"
+                  color="success lighten-1"
+                  class="mr-4">
+            {{ $t('actions.validate') }}
           </v-btn>
           <v-btn
-            @click="removeHeader"
-            color="error lighten-1">
-            {{ $t('actions.removeHeader') }}
+                  @click="reset"
+                  color="error"
+                  class="mr-4">
+            {{ $t('actions.reset') }}
           </v-btn>
-        </v-row>
-        <custom-header-input
-          v-for="n in customHeaders"
-          :key="n" />
-      </v-sheet>
-
-      <v-btn
-        :disabled="!valid"
-        @click="validate"
-        color="success lighten-1"
-        class="mr-4">
-        {{ $t('actions.validate') }}
-      </v-btn>
-      <v-btn
-        @click="reset"
-        color="error"
-        class="mr-4">
-        {{ $t('actions.reset') }}
-      </v-btn>
-      <v-progress-circular
-        v-if="loadingData"
-        indeterminate
-        color="primary" />
-    </v-form>
+          <v-progress-circular
+                  v-if="loadingData"
+                  indeterminate
+                  color="primary" />
+        </v-form>
+      </v-col>
+    </v-row>
     <v-container
       v-if="validated"
       fluid>
@@ -111,7 +115,7 @@ export default {
   mixins: [page],
   head () {
     return {
-      title: 'create API'
+      title: this.$t('nav.createApi')
     }
   },
   data () {
@@ -156,15 +160,14 @@ export default {
     ...mapGetters('api', { rawData: apiGetters.SELECTED_API_DATA }),
     ...mapGetters('collections', { collectionById: collectionGetters.COLLECTION_BY_ID }),
     collection () {
-      console.debug(this.forCollection)
       return this.collectionById(this.forCollection)
     }
   },
   mounted () {
     this.setCrumbs([
-      { label: 'home', route: { name: 'index' } },
+      { label: this.$t('nav.home'), route: { name: 'index' } },
       { label: this.collection.name, route: { name: 'collections-collection', params: { collection: this.forCollection } } },
-      { label: 'create api' }])
+      { label: this.$t('nav.createApi') }])
   },
   methods: {
     ...mapActions({
