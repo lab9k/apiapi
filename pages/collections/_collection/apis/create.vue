@@ -2,69 +2,74 @@
   <v-container fluid>
     <v-row>
       <v-col lg="6">
-        <v-form
-                ref="form"
-                v-model="valid">
-          <v-text-field
-                  v-model="name"
-                  :rules="nameRules"
-                  :label="$t('formLabels.name')"
-                  required />
+        <v-card>
+          <v-form
+            ref="form"
+            v-model="valid">
+            <v-card-text>
+              <v-text-field
+                v-model="name"
+                :rules="nameRules"
+                :label="$t('formLabels.name')"
+                required />
 
-          <v-text-field
-                  v-model="url"
-                  :rules="urlRules"
-                  :label="$t('formLabels.url')"
-                  required />
+              <v-text-field
+                v-model="url"
+                :rules="urlRules"
+                :label="$t('formLabels.url')"
+                required />
 
-          <v-select
-                  v-model="authMethod"
-                  :items="authMethodItems"
-                  :rules="authMethodRules"
-                  :label="$t('formLabels.authMethod')"
-                  required />
+              <v-select
+                v-model="authMethod"
+                :items="authMethodItems"
+                :rules="authMethodRules"
+                :label="$t('formLabels.authMethod')"
+                required />
 
-          <v-text-field
-                  v-model="apiKey"
-                  v-if="authMethod === 'api_key'"
-                  :label="$t('formLabels.apiKey')" />
-          <v-sheet v-if="authMethod === 'custom_headers'">
-            <v-row>
+              <v-text-field
+                v-model="apiKey"
+                v-if="authMethod === 'api_key'"
+                :label="$t('formLabels.apiKey')" />
+              <v-sheet v-if="authMethod === 'custom_headers'">
+                <v-row>
+                  <v-btn
+                    @click="addHeader"
+                    color="success lighten-1"
+                    class="mr-4">
+                    {{ $t('actions.addHeader') }}
+                  </v-btn>
+                  <v-btn
+                    @click="removeHeader"
+                    color="error lighten-1">
+                    {{ $t('actions.removeHeader') }}
+                  </v-btn>
+                </v-row>
+                <custom-header-input
+                  v-for="n in customHeaders"
+                  :key="n" />
+              </v-sheet>
+            </v-card-text>
+            <v-card-actions>
               <v-btn
-                      @click="addHeader"
-                      color="success lighten-1"
-                      class="mr-4">
-                {{ $t('actions.addHeader') }}
+                :disabled="!valid"
+                @click="validate"
+                color="primary"
+                class="mr-4">
+                {{ $t('actions.validate') }}
               </v-btn>
               <v-btn
-                      @click="removeHeader"
-                      color="error lighten-1">
-                {{ $t('actions.removeHeader') }}
+                @click="reset"
+                text
+                class="mr-4">
+                {{ $t('actions.reset') }}
               </v-btn>
-            </v-row>
-            <custom-header-input
-                    v-for="n in customHeaders"
-                    :key="n" />
-          </v-sheet>
-
-          <v-btn
-                  :disabled="!valid"
-                  @click="validate"
-                  color="success lighten-1"
-                  class="mr-4">
-            {{ $t('actions.validate') }}
-          </v-btn>
-          <v-btn
-                  @click="reset"
-                  color="error"
-                  class="mr-4">
-            {{ $t('actions.reset') }}
-          </v-btn>
-          <v-progress-circular
-                  v-if="loadingData"
-                  indeterminate
-                  color="primary" />
-        </v-form>
+              <v-progress-circular
+                v-if="loadingData"
+                indeterminate
+                color="primary" />
+            </v-card-actions>
+          </v-form>
+        </v-card>
       </v-col>
     </v-row>
     <v-container
@@ -102,7 +107,7 @@ import CustomHeaderInput from '~/components/CustomHeaderInput.vue'
 import ConfirmCreationDialog from '~/components/ConfirmCreationDialog.vue'
 import DeviceStepper from '~/components/DeviceStepper.vue'
 import { mutationTypes, actionTypes, getterTypes as apiGetters } from '~/store/api'
-import { getterTypes as collectionGetters } from '~/store/collections'
+import { getterTypes as collectionGetters, actionTypes as collectionActions } from '~/store/collections'
 import page from '~/mixins/page'
 
 export default {
@@ -161,6 +166,11 @@ export default {
     ...mapGetters('collections', { collectionById: collectionGetters.COLLECTION_BY_ID }),
     collection () {
       return this.collectionById(this.forCollection)
+    }
+  },
+  async fetch ({ store, params }) {
+    if (!store.getters['collections/' + collectionGetters.COLLECTION_BY_ID](params.collection)) {
+      await store.dispatch('collections/' + collectionActions.FETCH_COLLECTION_BY_ID, params.collection)
     }
   },
   mounted () {

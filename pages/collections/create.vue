@@ -1,35 +1,34 @@
 <template>
   <v-form ref="form"
           @submit="submitCollection" v-model="valid">
-    <v-container>
+    <v-container fluid>
       <v-row>
-        <v-col cols="12">
-          <p>explain what to do</p>
-        </v-col>
-        <v-col cols="12">
-          <v-text-field :rules="nameRules"
-                        :counter="30"
-                        v-model="collection_name"
-                        required label="Name" />
-        </v-col>
-        <v-col cols="12">
-          <v-textarea v-model="collection_description"
-                      outlined label="description" />
-        </v-col>
-        <v-col cols="2">
-          <v-btn :disabled="!valid"
-                 color="success"
-                 type="submit"
-                 block>
-            Submit
-          </v-btn>
-        </v-col>
-        <v-col cols="2">
-          <v-btn color="error"
-                 type="reset"
-                 block>
-            Reset
-          </v-btn>
+        <v-col lg="6">
+          <v-card>
+            <v-card-text>
+              <p>explain what to do</p>
+              <v-text-field :rules="nameRules"
+                            :counter="30"
+                            v-model="collection_name"
+                            required label="Name" />
+              <v-textarea v-model="collection_description"
+                          outlined label="description"
+                          class="mt-5" />
+            </v-card-text>
+            <v-card-actions>
+              <v-btn :disabled="!valid"
+                     color="primary"
+                     class="mr-4"
+                     type="submit">
+                Submit
+              </v-btn>
+              <v-btn text
+                     class="mr-4"
+                     type="reset">
+                Reset
+              </v-btn>
+            </v-card-actions>
+          </v-card>
         </v-col>
       </v-row>
     </v-container>
