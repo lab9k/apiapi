@@ -11,6 +11,18 @@ export default {
       commit(mutationTypes.UPDATE_API_LIST, [])
     }
   },
+  async [actionTypes.FETCH_API_BY_ID] ({ commit }, id) {
+    try {
+      const url = `${process.env.baseUrl}/api/api/${id}`
+      const response = await fetch(url)
+      const doc = await response.json()
+      commit(mutationTypes.UPDATE_API_LIST, doc)
+      return doc
+    } catch (e) {
+      commit(mutationTypes.UPDATE_API_LIST, null)
+      return null
+    }
+  },
   async [actionTypes.FETCH_API_DATA] ({ commit }, { _id }) {
     const url = `${process.env.baseUrl}/api/data/raw/${_id}`
     const response = await fetch(url)

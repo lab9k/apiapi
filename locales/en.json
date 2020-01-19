@@ -35,7 +35,9 @@
     "collections": "collections",
     "home": "Home",
     "models": "Models",
-    "server": "Manage server"
+    "server": "Manage server",
+    "createCollection": "Create collection",
+    "createApi": "Create API"
   },
   "notifications": {
     "cacheFlushed": "Cache successfully flushed.",
@@ -52,5 +54,13 @@
     "reference": "Reference",
     "types": "Types",
     "meta": "Meta"
+  },
+  "collections": {
+    "name": "Collections",
+    "add": "Add new collection"
+  },
+  "apis": {
+    "name": "API's",
+    "add": "Add new API"
   }
 }

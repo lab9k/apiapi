@@ -1,18 +1,15 @@
 <template>
   <v-card>
+    <v-card-title v-text="api.name"
+                  class="headline" />
     <v-card-text>
-      <p v-text="api.name"
-         class="display-1 text--primary" />
       <p>
-        {{ $t('adjective') }}
-      </p>
-      <div class="text--primary">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium, labore
         perferendis?
-      </div>
+      </p>
     </v-card-text>
     <v-card-actions>
-      <v-btn :to="{ name: 'detail-id', params: { id: api._id } }"
+      <v-btn :to="{ name: 'collections-collection-apis-api', params: { api: api._id, collection: collectionId } }"
              color="secondary" outlined>
         {{ $t('actions.details') }}
       </v-btn>
@@ -32,6 +29,10 @@ export default {
   props: {
     api: {
       type: Object,
+      required: true
+    },
+    collectionId: {
+      type: String,
       required: true
     }
   },

@@ -3,7 +3,8 @@ import { mutationTypes } from './types'
 
 export default {
   [mutationTypes.UPDATE_API_LIST] (state, data) {
-    state.apis = [...data]
+    if (!data) { return }
+    state.apis = [...state.apis.filter(el => el._id !== data._id), data]
   },
   [mutationTypes.UPDATE_SELECTED_API_DATA] (state, data) {
     state.selected_api_data = data

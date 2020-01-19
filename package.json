@@ -31,7 +31,8 @@
     "nuxt": "^2.10.2",
     "nuxt-i18n": "^6.4.0",
     "redis": "^2.8.0",
-    "vue-json-component": "^0.3.0"
+    "vue-json-component": "^0.3.0",
+    "vuex": "latest"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^1.0.1",

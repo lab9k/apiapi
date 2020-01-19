@@ -9,5 +9,6 @@ export const mutationTypes = {
   DELETED_COLLECTION: 'deleted_collection'
 }
 export const getterTypes = {
-  ALL_COLLECTIONS: 'all_collections'
+  ALL_COLLECTIONS: 'all_collections',
+  COLLECTION_BY_ID: 'collection_by_id'
 }

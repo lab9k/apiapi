@@ -2,18 +2,18 @@
   <v-app>
     <NavBar />
     <v-content>
-      <div class="pt-10">
-        <nuxt />
-      </div>
+      <breadcrumbs />
+      <nuxt />
     </v-content>
   </v-app>
 </template>
 
 <script>
 import NavBar from '~/components/NavBar.vue'
+import Breadcrumbs from '~/components/molecules/breadcrumbs'
 
 export default {
   name: 'App',
-  components: { NavBar }
+  components: { Breadcrumbs, NavBar }
 }
 </script>
