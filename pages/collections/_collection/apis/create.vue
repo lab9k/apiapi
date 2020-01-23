@@ -192,7 +192,7 @@ export default {
     validate () {
       if (this.$refs.form.validate()) {
         this.loadingData = true
-        fetch(this.url)
+        fetch(`${process.env.baseUrl}/api/proxy/${btoa(this.url)}`)
           .then(data => data.json())
           .then((json) => {
             this.update(json)
