@@ -37,7 +37,8 @@
     "models": "Models",
     "server": "Manage server",
     "createCollection": "Create collection",
-    "createApi": "Create API"
+    "createApi": "Create API",
+    "createModel": "Create Model"
   },
   "notifications": {
     "cacheFlushed": "Cache successfully flushed.",
@@ -62,5 +63,8 @@
   "apis": {
     "name": "API's",
     "add": "Add new API"
+  },
+  "models": {
+    "name": "Models"
   }
 }
