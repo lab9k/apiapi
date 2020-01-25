@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/lab9k/apiapi.svg?branch=develop)](https://travis-ci.com/lab9k/apiapi)
+
 # apiapi
 
 > This is some sort of an api manager, which dynamically combines data from different api's. now the api expects to 
