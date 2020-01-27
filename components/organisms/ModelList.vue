@@ -12,7 +12,7 @@
     <v-container fluid>
       <v-row>
         <v-col v-for="model in models"
-               :key="model.name" md="4">
+               :key="model.name">
           <model-card :model="model" />
         </v-col>
       </v-row>

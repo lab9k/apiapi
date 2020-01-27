@@ -2,6 +2,16 @@
   <v-container fluid>
     <v-row justify="start">
       <v-col lg="4">
+        <v-text-field :label="'Name'"
+                      v-model="modelName" />
+      </v-col>
+      <v-col lg="8">
+        <v-textarea :label="'description'"
+                    v-model="modelDescription" />
+      </v-col>
+    </v-row>
+    <v-row justify="start">
+      <v-col lg="4">
         <v-card>
           <v-toolbar :elevation="0"
                      color="grey lighten-3">
@@ -21,7 +31,8 @@
             <v-spacer />
           </v-toolbar>
           <v-container fluid>
-            <model-property-selector :model="model" />
+            <model-property-selector :model="model"
+                                     @update="updateDataPaths" />
           </v-container>
         </v-card>
       </v-col>
@@ -29,7 +40,9 @@
     <v-row justify="end">
       <v-col lg="1">
         <v-btn v-t="'actions.save'"
-               color="success lighten-1" class="text--primary font-weight-black" />
+               @click="saveDataPaths"
+               color="success lighten-1"
+               class="text--primary font-weight-black" />
       </v-col>
     </v-row>
   </v-container>
@@ -38,6 +51,7 @@
 <script>
 import JsonEditor from '../../components/JsonEditor'
 import ModelPropertySelector from '../../components/ModelPropertySelector'
+import { actionTypes } from '../../store/models/types'
 import page from '~/mixins/page'
 
 export default {
@@ -66,7 +80,10 @@ export default {
         'longitude': 3.70557,
         'latitude': 51.0507,
         'organisation': "Jef's house"
-      }
+      },
+      dataPaths: [],
+      modelName: '',
+      modelDescription: ''
     }
   },
   mounted () {
@@ -75,6 +92,19 @@ export default {
       { label: this.$t('nav.models'), route: { name: 'models' } },
       { label: this.$t('nav.createModel'), route: { name: 'models-create' } }
     ])
+  },
+  methods: {
+    updateDataPaths (paths) {
+      this.dataPaths = paths
+    },
+    saveDataPaths () {
+      this.$store.dispatch('models/' + actionTypes.SAVE_MODEL,
+        {
+          paths: this.dataPaths,
+          name: this.modelName,
+          description: this.modelDescription
+        })
+    }
   }
 }
 </script>

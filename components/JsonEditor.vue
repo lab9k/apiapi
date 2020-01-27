@@ -2,7 +2,10 @@
   <v-container fluid>
     <v-row>
       <v-textarea v-model="jsonText"
-                  :error-messages="errorMessages" @change="validateInput" @input="validateInput" />
+                  :error-messages="errorMessages"
+                  @change="validateInput"
+                  @input="validateInput"
+                  :auto-grow="true" />
     </v-row>
     <v-row justify="end">
       <v-col lg="3">

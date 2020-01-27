@@ -1,7 +1,7 @@
 <template>
   <v-card>
     <v-card-title v-text="model.name"
-                  class="headline" />
+                  class="headline text-no-wrap" />
     <v-card-text>
       <p v-text="model.description" />
     </v-card-text>

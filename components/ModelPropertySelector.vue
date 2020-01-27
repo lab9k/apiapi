@@ -22,6 +22,7 @@
 </template>
 
 <script>
+import defaults from 'lodash/defaults'
 import { getPaths } from '../util/paths'
 
 export default {
@@ -35,7 +36,7 @@ export default {
   },
   data () {
     return {
-      dataModel: []
+      dataPaths: []
     }
   },
   computed: {
@@ -46,14 +47,16 @@ export default {
   watch: {
     model: {
       handler () {
-        this.dataModel = this.properties.map(path => ({ path }))
+        this.dataPaths = this.properties.map(path => defaults({ path }, { hint: '', default: '' }))
+        this.$emit('update', this.dataPaths.map(el => defaults({ ...el }, { hint: '', default: '' })))
       },
       immediate: true
     }
   },
   methods: {
     updatePath (path, type, event) {
-      this.dataModel.find(modelPath => modelPath.path === path)[type] = event
+      this.dataPaths.find(modelPath => modelPath.path === path)[type] = event
+      this.$emit('update', this.dataPaths.map(el => defaults({ ...el }, { hint: '', default: '' })))
     }
   }
 }
