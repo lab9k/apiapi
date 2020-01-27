@@ -14,7 +14,9 @@
     "removeHeader": "Remove header",
     "reset": "Reset form",
     "submit": "Submit",
-    "validate": "Validate"
+    "validate": "Validate",
+    "save": "Save",
+    "format": "Format"
   },
   "adjective": "adjective",
   "api": "API | APIs | {count} APIs",
@@ -65,6 +67,12 @@
     "add": "Add new API"
   },
   "models": {
-    "name": "Models"
+    "name": "Models",
+    "datamodel": "Data Model",
+    "properties": "Properties",
+    "paths": "Paths",
+    "hint": "Hint",
+    "default": "Default value",
+    "path": "path"
   }
 }

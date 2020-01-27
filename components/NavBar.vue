@@ -10,13 +10,6 @@
     </v-toolbar-title>
     <v-spacer />
     <v-btn
-      :to="{name:'models'}"
-      exact
-      color="white"
-      class="text--primary font-weight-black mr-4">
-      {{ $t('nav.models') }}
-    </v-btn>
-    <v-btn
       :to="{name:'manage'}"
       exact
       color="white"
