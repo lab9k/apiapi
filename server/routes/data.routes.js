@@ -5,6 +5,6 @@ const router = express.Router()
 
 router.get('/', DataController.getAll)
 router.get('/raw/:id', DataController.getRawDataFromApi)
-router.get('/:id', DataController.getFromApi)
+router.get('/:id', DataController.getForCollection)
 
 module.exports = router

@@ -10,7 +10,7 @@
             :editable="true"
             :key="'header-' + index"
             :step="index + 1">
-            {{ $t('steps.' + currentStep) }}
+            {{ currentStep.path }}
           </v-stepper-step>
           <v-divider v-if="index < steps.length - 1" />
         </template>
@@ -19,17 +19,19 @@
       <v-stepper-items>
         <v-stepper-content v-for="(currentStep, index) in steps"
                            :step="index + 1" :key="'content-' + index">
-          <v-container v-if="currentStep === 'meta'"
+          <v-container v-if="currentStep.path === 'meta'"
                        fluid>
             <extra-fields-input
               :ref="'stepper-' + (index + 1)"
-              :label="$t('steps.' + currentStep)" />
+              :label="currentStep.path" />
           </v-container>
           <v-container v-else
                        fluid>
             <const-or-value-input
               :ref="'stepper-' + (index + 1)"
-              :label="$t('steps.' + currentStep)" />
+              :label="currentStep.path"
+              :hint="currentStep.hint"
+              :default="currentStep.default" />
           </v-container>
           <v-btn
             v-if="index < steps.length - 1"
@@ -60,15 +62,24 @@ import ExtraFieldsInput from './ExtraFieldsInput'
 export default {
   name: 'DeviceStepper',
   components: { ExtraFieldsInput, ConstOrValueInput },
+  props: {
+    model: {
+      type: Object,
+      required: true
+    }
+  },
   data () {
     return {
       step: 0,
-      id: '',
-      steps: ['id', 'organization', 'reference', 'application', 'types', 'categories', 'longitude', 'latitude', 'meta']
+      id: ''
+      // steps: ['id', 'organization', 'reference', 'application', 'types', 'categories', 'longitude', 'latitude', 'meta']
     }
   },
   computed: {
-    ...mapGetters({ selected_data: 'api/' + getterTypes.SELECTED_API_DATA })
+    ...mapGetters({ selected_data: 'api/' + getterTypes.SELECTED_API_DATA }),
+    steps () {
+      return this.model.paths.concat({ path: 'meta' })
+    }
   },
   methods: {
     nextStep (n) {
@@ -79,11 +90,11 @@ export default {
       }
     },
     completeStepper () {
-      const paths = {}
+      const paths = []
       for (let i = 1; i <= this.steps.length; i += 1) {
         try {
           const step = this.$refs[`stepper-${i}`][0]
-          paths[step.label.toLowerCase()] = step.getValue()
+          paths.push(step.getValue())
         } catch (e) {
           console.error(e)
         }

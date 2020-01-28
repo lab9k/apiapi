@@ -11,6 +11,7 @@
           :rules="rules"
           :label="label"
           v-model="value"
+          :hint="hint"
           :outlined="selection === 'path'"
           :readonly="selection === 'path'"
           required />
@@ -37,11 +38,17 @@ export default {
     label: {
       type: String,
       required: true
+    },
+    hint: {
+      type: String, required: false, default: ''
+    },
+    default: {
+      type: String, required: false, default: ''
     }
   },
   data () {
     return {
-      value: '',
+      value: this.default,
       selection: '',
       constant: true,
       optionItems: [{ value: 'constant', text: 'Constant' }, { value: 'path', text: 'Path' }],
@@ -56,7 +63,8 @@ export default {
     getValue () {
       return {
         type: this.selection,
-        value: this.value
+        value: this.value,
+        toPath: this.label
       }
     },
     updateValue (ev) {

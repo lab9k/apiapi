@@ -6,11 +6,11 @@
         :loading="loadingFlushBtn"
         color="danger"
         class="mr-4">
-        {{ $t('flushCache') }}
+        {{ $t('actions.flushCache') }}
       </v-btn>
       <span v-if="flushMessage"
             :class="flushTextColor">
-        {{ $t('flushMessage') }}
+        {{ $t(flushMessage) }}
       </span>
     </v-row>
   </v-container>
