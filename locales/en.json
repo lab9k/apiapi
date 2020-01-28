@@ -14,7 +14,9 @@
     "removeHeader": "Remove header",
     "reset": "Reset form",
     "submit": "Submit",
-    "validate": "Validate"
+    "validate": "Validate",
+    "save": "Save",
+    "format": "Format"
   },
   "adjective": "adjective",
   "api": "API | APIs | {count} APIs",
@@ -37,7 +39,8 @@
     "models": "Models",
     "server": "Manage server",
     "createCollection": "Create collection",
-    "createApi": "Create API"
+    "createApi": "Create API",
+    "createModel": "Create Model"
   },
   "notifications": {
     "cacheFlushed": "Cache successfully flushed.",
@@ -62,5 +65,14 @@
   "apis": {
     "name": "API's",
     "add": "Add new API"
+  },
+  "models": {
+    "name": "Models",
+    "datamodel": "Data Model",
+    "properties": "Properties",
+    "paths": "Paths",
+    "hint": "Hint",
+    "default": "Default value",
+    "path": "path"
   }
 }

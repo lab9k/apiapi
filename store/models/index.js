@@ -1,3 +1,9 @@
 export const state = () => ({
-  creationModel: []
+  models: []
 })
+
+export {
+  mutationTypes,
+  actionTypes,
+  getterTypes
+} from './types'

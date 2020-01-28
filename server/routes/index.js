@@ -4,6 +4,7 @@ const apiRoutes = require('./api.routes')
 const dataRoutes = require('./data.routes')
 const serverRoutes = require('./server.routes')
 const collectionRoutes = require('./collection.routes')
+const dataModelRoutes = require('./datamodel.routes')
 
 const router = express.Router()
 
@@ -11,6 +12,7 @@ router.use('/api', apiRoutes)
 router.use('/data', dataRoutes)
 router.use('/server', serverRoutes)
 router.use('/collection', collectionRoutes)
+router.use('/models', dataModelRoutes)
 
 /**
  * Used to circumvent CORS issues.
