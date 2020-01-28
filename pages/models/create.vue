@@ -40,7 +40,7 @@
     <v-row justify="end">
       <v-col lg="1">
         <v-btn v-t="'actions.save'"
-               @click="saveDataPaths"
+               @click="savePaths"
                color="success lighten-1"
                class="text--primary font-weight-black" />
       </v-col>
@@ -49,6 +49,7 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 import JsonEditor from '../../components/JsonEditor'
 import ModelPropertySelector from '../../components/ModelPropertySelector'
 import { actionTypes } from '../../store/models/types'
@@ -97,14 +98,16 @@ export default {
     updateDataPaths (paths) {
       this.dataPaths = paths
     },
-    saveDataPaths () {
-      this.$store.dispatch('models/' + actionTypes.SAVE_MODEL,
-        {
-          paths: this.dataPaths,
-          name: this.modelName,
-          description: this.modelDescription
-        })
-    }
+    savePaths () {
+      this.saveDataPaths({
+        paths: this.dataPaths,
+        name: this.modelName,
+        description: this.modelDescription
+      }).then(() => {
+        this.$router.push({ name: 'index' })
+      })
+    },
+    ...mapActions('models', { saveDataPaths: actionTypes.SAVE_MODEL })
   }
 }
 </script>

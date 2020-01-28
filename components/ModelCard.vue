@@ -20,6 +20,8 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+import { actionTypes } from '../store/models/types'
 export default {
   name: 'ModelCard',
   props: {
@@ -29,9 +31,7 @@ export default {
     }
   },
   methods: {
-    deleteModel (id) {
-      console.log(`deleting model ${id}`)
-    }
+    ...mapActions('models', { deleteModel: actionTypes.DELETE_MODEL })
   }
 }
 </script>
