@@ -9,50 +9,50 @@ const PATH_TYPES = {
   CONSTANT: 'constant'
 }
 
-const defaultPathValue = {
-  id: {
-    type: PATH_TYPES.PATH,
-    value: ''
-  },
-  organization: {
-    type: PATH_TYPES.PATH,
-    value: ''
-  },
-  reference: {
-    type: PATH_TYPES.PATH,
-    value: ''
-  },
-  application: {
-    type: PATH_TYPES.PATH,
-    value: ''
-  },
-  types: {
-    type: PATH_TYPES.CONSTANT,
-    value: [
-      {
-        name: '',
-        application: '',
-        description: ''
-      }
-    ]
-  },
-  categories: {
-    type: PATH_TYPES.CONSTANT,
-    value: ['']
-  },
-  longitude: {
-    type: PATH_TYPES.PATH,
-    value: ''
-  },
-  latitude: {
-    type: PATH_TYPES.PATH,
-    value: ''
-  },
-  meta: {
-    type: PATH_TYPES.PATH,
-    value: ''
-  }
-}
+// const defaultPathValue = {
+//   id: {
+//     type: PATH_TYPES.PATH,
+//     value: ''
+//   },
+//   organization: {
+//     type: PATH_TYPES.PATH,
+//     value: ''
+//   },
+//   reference: {
+//     type: PATH_TYPES.PATH,
+//     value: ''
+//   },
+//   application: {
+//     type: PATH_TYPES.PATH,
+//     value: ''
+//   },
+//   types: {
+//     type: PATH_TYPES.CONSTANT,
+//     value: [
+//       {
+//         name: '',
+//         application: '',
+//         description: ''
+//       }
+//     ]
+//   },
+//   categories: {
+//     type: PATH_TYPES.CONSTANT,
+//     value: ['']
+//   },
+//   longitude: {
+//     type: PATH_TYPES.PATH,
+//     value: ''
+//   },
+//   latitude: {
+//     type: PATH_TYPES.PATH,
+//     value: ''
+//   },
+//   meta: {
+//     type: PATH_TYPES.PATH,
+//     value: ''
+//   }
+// }
 
 module.exports.PATH_TYPES = PATH_TYPES
 
