@@ -226,7 +226,7 @@ export default {
           }
           this.dialogVisible = false
           /* params: { id: this.forCollection } */
-          this.$router.push({ name: 'index' })
+          this.$router.push(`/collections/${this.forCollection}`)
         })
       }
     },
