@@ -11,6 +11,7 @@ module.exports = {
     const { id } = req.params
     return CollectionModel.findById(id)
       .populate('apis')
+      .populate('model')
       .exec()
       .then(result => res.json(result))
       .catch(err => next(err))

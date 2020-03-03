@@ -85,6 +85,7 @@
 
     <device-stepper
       v-if="validated"
+      :model="collection.model"
       @complete="pathsCompleted" />
     <confirm-creation-dialog
       ref="confirmDialog"
@@ -224,7 +225,8 @@ export default {
             // TODO: handle error
           }
           this.dialogVisible = false
-          this.$router.push({ name: 'collection-id', params: { id: this.forCollection } })
+          /* params: { id: this.forCollection } */
+          this.$router.push(`/collections/${this.forCollection}`)
         })
       }
     },

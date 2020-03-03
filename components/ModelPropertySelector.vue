@@ -41,7 +41,7 @@ export default {
   },
   computed: {
     properties () {
-      return getPaths(this.model, 'root')
+      return getPaths(this.model, 'root').map(el => el.substr(5))
     }
   },
   watch: {

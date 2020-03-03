@@ -70,11 +70,6 @@ export default {
             'name': 'People',
             'application': 'Cats',
             'description': ''
-          },
-          {
-            'name': 'Cats',
-            'application': 'Cats',
-            'description': ''
           }
         ],
         'categories': ['Sensor'],
