@@ -1,8 +1,7 @@
 const mongoose = require('mongoose')
-const { get: getProp } = require('lodash')
+const { get: getProp, set: setProp } = require('lodash')
 const RedisService = require('../../services/redis.service')
 const HttpService = require('../../services/http.service')
-const Device = require('./device.model')
 
 const PATH_TYPES = {
   PATH: 'path',
@@ -70,11 +69,23 @@ const ApiSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  paths: {
-    required: true,
-    default: defaultPathValue,
-    type: Object
-  },
+  paths: [{
+    toPath: {
+      // ? name of the path key
+      type: String
+    },
+    type: {
+      // ? constant or path
+      type: String,
+      enum: [PATH_TYPES.CONSTANT, PATH_TYPES.PATH],
+      default: PATH_TYPES.CONSTANT
+    },
+    value: {
+      // ? path to fetch from OR const data to put in
+      type: String,
+      default: ''
+    }
+  }],
   dataPath: {
     type: String,
     default: ''
@@ -101,7 +112,7 @@ ApiSchema.methods.raw = async function getRawData () {
   return data
 }
 
-ApiSchema.methods.invoke = function invokeApi () {
+ApiSchema.methods.invoke = function invokeApi (model) {
   return RedisService.getData(this.name).then((cachedResponse) => {
     if (cachedResponse) {
       return JSON.parse(cachedResponse)
@@ -114,33 +125,19 @@ ApiSchema.methods.invoke = function invokeApi () {
     return prom.then(({ data: response }) => {
       const data = !this.dataPath ? response : getProp(response, this.dataPath)
 
-      const searchProp = (element, prop) => {
-        if (!this.paths[prop]) { return undefined }
-        return this.paths[prop].type === PATH_TYPES.CONSTANT
-          ? this.paths[prop].value
-          : getProp(element, this.paths[prop].value)
-      }
-      const allData = data.map((element) => {
-        const id = searchProp(element, 'id')
-        const organization = searchProp(element, 'organization')
-        const reference = searchProp(element, 'reference')
-        const longitude = searchProp(element, 'longitude')
-        const latitude = searchProp(element, 'latitude')
-        const application = searchProp(element, 'application')
-        const meta = this.meta
-        const types = searchProp(element, 'types')
-        const categories = searchProp(element, 'categories')
-        return new Device({
-          id,
-          organization,
-          reference,
-          longitude,
-          latitude,
-          application,
-          meta,
-          types,
-          categories
-        })
+      const allData = data.map((rawDataElement) => {
+        // rawDataElement = data element coming from api
+        // should be mapped to an object which paths come from model
+
+        return this.paths.reduce((acc, { toPath: pathName, value: pathValue, type: pathType }) => {
+          if (pathType === PATH_TYPES.CONSTANT) {
+            setProp(acc, pathName, pathValue)
+          } else if (pathType === PATH_TYPES.PATH) {
+            const fetchedData = getProp(rawDataElement, pathValue)
+            setProp(acc, pathName, fetchedData)
+          }
+          return acc
+        }, {})
       })
       RedisService.setData(this.name, JSON.stringify(allData))
       return allData

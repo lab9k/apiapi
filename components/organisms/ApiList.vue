@@ -12,7 +12,7 @@
     <v-container fluid>
       <v-row>
         <v-col v-for="api in apis"
-               :key="api._id" md="4">
+               :key="api._id" lg="6">
           <api-card :api="api"
                     :collectionId="collectionId" />
         </v-col>

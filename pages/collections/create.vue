@@ -14,6 +14,10 @@
               <v-textarea v-model="collection_description"
                           outlined label="description"
                           class="mt-5" />
+              <v-select :items="models"
+                        v-model="selected_model"
+                        item-text="name"
+                        item-value="_id" />
             </v-card-text>
             <v-card-actions>
               <v-btn :disabled="!valid"
@@ -36,9 +40,10 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 import page from '~/mixins/page'
 import { actionTypes } from '~/store/collections'
+import { actionTypes as modelActions, getterTypes as modelGetters } from '~/store/models'
 
 export default {
   name: 'CreateCollection',
@@ -56,22 +61,30 @@ export default {
         v => (v && v.trim().length > 5 && v.trim().length < 30) || 'Name should be between 5 and 30 characters'
       ],
       collection_name: '',
-      collection_description: ''
+      collection_description: '',
+      selected_model: '',
+      selected_model_rules: [
+        v => !!v || 'Please select a model',
+        v => this.models.map(el => el._id).includes(v) || 'Please select an existing model from the list'
+      ]
     }
   },
   computed: {
     collection () {
       return {
         name: this.collection_name,
-        description: this.collection_description
+        description: this.collection_description,
+        model: this.selected_model
       }
-    }
+    },
+    ...mapGetters('models', { models: modelGetters.ALL_MODELS })
   },
   mounted () {
     this.setCrumbs([{ label: this.$t('nav.home'), route: { name: 'index' } }, { label: this.$t('nav.createCollection') }])
   },
   methods: {
     ...mapActions('collections', { create: actionTypes.CREATE }),
+    ...mapActions('models', { fetchModels: modelActions.FETCH_ALL }),
     submitCollection (ev) {
       ev.preventDefault()
       if (this.validate()) {
