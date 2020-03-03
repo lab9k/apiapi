@@ -77,11 +77,13 @@ const ApiSchema = new mongoose.Schema({
     type: {
       // ? constant or path
       type: String,
-      enum: [PATH_TYPES.CONSTANT, PATH_TYPES.PATH]
+      enum: [PATH_TYPES.CONSTANT, PATH_TYPES.PATH],
+      default: PATH_TYPES.CONSTANT
     },
     value: {
       // ? path to fetch from OR const data to put in
-      type: String
+      type: String,
+      default: ''
     }
   }],
   dataPath: {
