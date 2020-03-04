@@ -5,16 +5,21 @@
         class="mb-5" />
     <v-sheet v-for="label in keys"
              :key="label">
-      <v-text-field :value="valueFor(label)"
-                    :label="label" flat readonly
-                    filled dense />
+      <v-textarea :value="valueFor(label).value"
+                  :label="label"
+                  :rows="valueFor(label).rows"
+                  flat
+                  readonly
+                  filled
+                  dense
+                  auto-grow />
     </v-sheet>
   </v-container>
 </template>
 <script>
 import { mapGetters, mapActions, mapMutations } from 'vuex'
 import { getterTypes, actionTypes, mutationTypes } from '~/store/api'
-import { getterTypes as collectionGetters } from '~/store/collections'
+import { getterTypes as collectionGetters, actionTypes as collectionActions } from '~/store/collections'
 import page from '~/mixins/page'
 
 export default {
@@ -49,16 +54,19 @@ export default {
     },
     valueFor () {
       return (key) => {
-        const value = this.api[key]
-        if (Array.isArray(value) || !value.toUpperCase) {
-          return JSON.stringify(value)
+        const apiVal = this.api[key]
+        const value = { value: apiVal, rows: 1 }
+        if (Array.isArray(apiVal) || !apiVal.toUpperCase) {
+          return {
+            value: JSON.stringify(apiVal, null, 2)
+          }
         }
         return value
       }
     }
   },
   async fetch ({ store, params }) {
-    await store.dispatch('collections/' + actionTypes.FETCH_COLLECTION_BY_ID, params.collection)
+    await store.dispatch('collections/' + collectionActions.FETCH_COLLECTION_BY_ID, params.collection)
     await store.dispatch('api/' + actionTypes.FETCH_API_BY_ID, params.api)
   },
   mounted () {
