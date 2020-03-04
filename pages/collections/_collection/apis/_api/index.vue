@@ -3,18 +3,12 @@
                fluid>
     <h1 v-text="api.name"
         class="mb-5" />
-    <a :href="api.url"
-       v-text="api.url" />
-    <div class="mt-5">
-      <v-btn @click="loadData">
-        {{ $t('actions.load') }}
-      </v-btn>
-    </div>
-    <v-row>
-      <v-col>
-        {{ selectedData }}
-      </v-col>
-    </v-row>
+    <v-sheet v-for="label in keys"
+             :key="label">
+      <v-text-field :value="valueFor(label)"
+                    :label="label" flat readonly
+                    filled dense />
+    </v-sheet>
   </v-container>
 </template>
 <script>
@@ -49,16 +43,29 @@ export default {
     },
     collection () {
       return this.collectionById(this.collectionId)
+    },
+    keys () {
+      return Object.keys(this.api)
+    },
+    valueFor () {
+      return (key) => {
+        const value = this.api[key]
+        if (Array.isArray(value) || !value.toUpperCase) {
+          return JSON.stringify(value)
+        }
+        return value
+      }
     }
   },
   async fetch ({ store, params }) {
+    await store.dispatch('collections/' + actionTypes.FETCH_COLLECTION_BY_ID, params.collection)
     await store.dispatch('api/' + actionTypes.FETCH_API_BY_ID, params.api)
   },
   mounted () {
     this.setCrumbs([
       { label: this.$t('nav.home'), route: { name: 'index' } },
-      { label: this.collection.name, route: { name: 'collections-collection', params: { collection: this.collectionId } } },
-      { label: this.api.name }
+      { label: this.collection?.name, route: { name: 'collections-collection', params: { collection: this.collectionId } } },
+      { label: this.api?.name }
     ])
   },
   beforeDestroy () {
