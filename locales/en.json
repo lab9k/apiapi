@@ -1,0 +1,78 @@
+{
+  "actions": {
+    "add": "Add",
+    "addHeader": "Add header",
+    "cancel": "Cancel",
+    "complete": "Complete",
+    "confirm": "Confirm",
+    "continue": "Continue",
+    "delete": "Delete",
+    "details": "Details",
+    "flushCache": "Flush cache",
+    "load": "Load",
+    "reject": "Reject",
+    "removeHeader": "Remove header",
+    "reset": "Reset form",
+    "submit": "Submit",
+    "validate": "Validate",
+    "save": "Save",
+    "format": "Format"
+  },
+  "adjective": "adjective",
+  "api": "API | APIs | {count} APIs",
+  "currentDataModel": "Current data model",
+  "formLabels": {
+    "apiKey": "API key",
+    "authMethod": "Authentication method",
+    "headerName": "Header name",
+    "headerValue": "Header value",
+    "name": "Name",
+    "propertyName": "Property name",
+    "setBasePath": "Set base path",
+    "type": "Type",
+    "url": "URL"
+  },
+  "invoke_all": "invoke all",
+  "nav": {
+    "collections": "collections",
+    "home": "Home",
+    "models": "Models",
+    "server": "Manage server",
+    "createCollection": "Create collection",
+    "createApi": "Create API",
+    "createModel": "Create Model"
+  },
+  "notifications": {
+    "cacheFlushed": "Cache successfully flushed.",
+    "cacheNotFlushed": "Something went wrong. Cache not flushed.",
+    "fieldTypeNotFound": "Field type {type} does not exist."
+  },
+  "steps": {
+    "application": "Application",
+    "categories": "Categories",
+    "id": "Id",
+    "latitude": "Latitude",
+    "longitude": "Longitude",
+    "organization": "Organization",
+    "reference": "Reference",
+    "types": "Types",
+    "meta": "Meta"
+  },
+  "collections": {
+    "name": "Collections",
+    "add": "Add new collection"
+  },
+  "apis": {
+    "name": "API's",
+    "add": "Add new API"
+  },
+  "models": {
+    "name": "Models",
+    "datamodel": "Data Model",
+    "properties": "Properties",
+    "paths": "Paths",
+    "hint": "Hint",
+    "default": "Default value",
+    "path": "path"
+  }
+}
