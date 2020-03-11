@@ -1,0 +1,528 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "ApiApi api documentation",
+    "version": "1.0.0",
+    "title": "ApiApi api",
+    "contact": {
+      "email": "jef.willems@digipolis.gent"
+    }
+  },
+  "basePath": "/api",
+  "tags": [
+    {
+      "name": "api",
+      "description": "Stored apis endpoint"
+    },
+    {
+      "name": "data",
+      "description": "Data endpoint for collection data retrieval and mapping"
+    },
+    {
+      "name": "collection",
+      "description": "Collection endpoint"
+    },
+    {
+      "name": "models",
+      "description": "Datamodel endpoint"
+    }
+  ],
+  "schemes": [
+    "https",
+    "http"
+  ],
+  "paths": {
+    "/api": {
+      "get": {
+        "tags": [
+          "api"
+        ],
+        "summary": "Retrieve a list of all stored apis",
+        "description": "",
+        "operationId": "listApis",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "api"
+        ],
+        "summary": "Add a new api",
+        "description": "",
+        "operationId": "addApi",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Api object that needs to be added to the database",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Api"
+            }
+          }
+        ],
+        "responses": {
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      }
+    },
+    "/api/{id}": {
+      "put": {
+        "tags": [
+          "api"
+        ],
+        "summary": "Update an existing Api",
+        "description": "",
+        "operationId": "updateApi",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Api object that needs to be updated",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Api"
+            }
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "description": "Id of the api object",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Api not found"
+          },
+          "405": {
+            "description": "Validation exception"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "api"
+        ],
+        "summary": "Retrieve a single api",
+        "description": "",
+        "operationId": "fetchApi",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "description": "Id of the api object",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Api was found"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "api"
+        ],
+        "summary": "Delete a single api",
+        "description": "",
+        "operationId": "deleteApi",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "description": "Id of the api object",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Api was deleted"
+          }
+        }
+      }
+    },
+    "/data/{collectionId}": {
+      "get": {
+        "tags": [
+          "data"
+        ],
+        "summary": "Retrieve data for a collection with id",
+        "description": "",
+        "operationId": "getDataForCollection",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "collectionId",
+            "description": "Id of the collection that's being queried",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The data was mapped and returned"
+          }
+        }
+      }
+    },
+    "/data/raw/{apiId}": {
+      "get": {
+        "tags": [
+          "data"
+        ],
+        "summary": "Retrieve data from an api without mapping it",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "apiId",
+            "description": "Id of the collection that's being queried",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/collection": {
+      "get": {
+        "tags": [
+          "collection"
+        ],
+        "summary": "Retrieves a list of all collections",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "operationId": "fetchCollections",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "collection"
+        ],
+        "summary": "Create a new collection",
+        "description": "",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Collection to be created",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Collection"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/collection/{collectionId}": {
+      "get": {
+        "tags": [
+          "collection"
+        ],
+        "summary": "find collection with id",
+        "description": "",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "collectionId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "collection"
+        ],
+        "summary": "update an existing collection with id",
+        "description": "",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "collectionId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Collection to be created",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Collection"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "collection"
+        ],
+        "summary": "Delete a collection with id",
+        "description": "",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "collectionId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/models": {
+      "get": {
+        "tags": [
+          "models"
+        ],
+        "summary": "Retrieve a list of data models",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "models"
+        ],
+        "summary": "Create a new datamodel",
+        "description": "",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DataModel"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/models/{modelId}": {
+      "delete": {
+        "tags": [
+          "models"
+        ],
+        "summary": "Deleted a model with id",
+        "description": "",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "modelId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Api": {
+      "type": "object",
+      "required": [
+        "name",
+        "url",
+        "paths"
+      ],
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "authMethod": {
+          "type": "string",
+          "default": "open",
+          "enum": [
+            "open"
+          ]
+        },
+        "url": {
+          "type": "string"
+        },
+        "paths": {
+          "$ref": "#/definitions/Paths"
+        },
+        "dataPath": {
+          "type": "string",
+          "description": "base path where the results are located (e.g. data.results)"
+        },
+        "customHeaders": {
+          "type": "object"
+        },
+        "requestMethod": {
+          "type": "string"
+        },
+        "requestData": {
+          "type": "string"
+        },
+        "meta": {
+          "type": "object"
+        }
+      }
+    },
+    "Paths": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "toPath": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "constant",
+              "path"
+            ]
+          },
+          "value": {
+            "type": "string",
+            "description": "if type is constant, value is the value to put in toPath. if type is path, value is the path to fetch data from and put in toPath"
+          }
+        }
+      }
+    },
+    "Collection": {
+      "type": "object",
+      "required": [
+        "name",
+        "model"
+      ],
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "apis": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "description": "ObjectId of an api"
+          }
+        },
+        "model": {
+          "type": "string",
+          "description": "ObjectId of the output model"
+        }
+      }
+    },
+    "DataModel": {
+      "type": "object",
+      "required": [
+        "name",
+        "description"
+      ],
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "paths": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "path": {
+                "type": "string",
+                "description": "Path to which will be mapped"
+              },
+              "hint": {
+                "type": "string"
+              },
+              "default": {
+                "type": "string",
+                "description": "Default value for this path in the data model (when you want all apis to be offered a constant default value)"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

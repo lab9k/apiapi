@@ -5,6 +5,7 @@ const bodyParser = require('body-parser')
 const morgan = require('morgan')
 const dotenv = require('dotenv')
 const cors = require('cors')
+const swaggerUiExpress = require('swagger-ui-express')
 
 dotenv.config()
 
@@ -45,6 +46,7 @@ async function start () {
       .catch(next)
   })
   app.use('/api', routes)
+  app.use('/api-docs', swaggerUiExpress.serve, swaggerUiExpress.setup(require('./docs/index')))
   app.use(nuxt.render)
 
   // Listen the server
