@@ -5,7 +5,8 @@ export const actionTypes = {
   INVOKE_ALL: 'invoke_all',
   CREATE_API: 'create_api',
   DELETE_API: 'delete_api',
-  FLUSH_CACHE: 'flush_cache'
+  FLUSH_CACHE: 'flush_cache',
+  UPDATE_API: 'update_api'
 }
 export const mutationTypes = {
   UPDATE_API_LIST: 'update_api_list',

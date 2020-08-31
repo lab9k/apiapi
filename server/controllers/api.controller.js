@@ -16,7 +16,7 @@ module.exports = {
   create (req, res, next) {
     const { forCollection } = req.body
     const api = new ApiModel(req.body)
-    return CollectionModel.update({ _id: forCollection }, { $push: { apis: api } })
+    return CollectionModel.updateOne({ _id: forCollection }, { $push: { apis: api } })
       .exec()
       .then(() => {
         return api.save()

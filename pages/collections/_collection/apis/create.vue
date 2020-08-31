@@ -130,7 +130,7 @@ export default {
       nameRules: [v => !!v || 'Name is required'],
       name: 'Donkey Republic bike sharing',
       urlRules: [v => !!v || 'Url is required'],
-      url: 'https://datatank.stad.gent/4/mobiliteit/donkeyrepublicdeelfietsenlocaties.json',
+      url: 'https://data.stad.gent/api/records/1.0/search/?dataset=donkey-republic-deelfietsen-stations-locaties&q=',
       authMethodItems: [
         { text: 'Open', value: 'open' },
         { value: 'api_key', text: 'Api key' },

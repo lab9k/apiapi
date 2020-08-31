@@ -5,15 +5,18 @@
         class="mb-5" />
     <v-sheet v-for="label in keys"
              :key="label">
-      <v-textarea :value="valueFor(label).value"
-                  :label="label"
-                  :rows="valueFor(label).rows"
-                  flat
-                  readonly
-                  filled
-                  dense
-                  auto-grow />
+      <v-textarea
+        :label="label"
+        v-model="apimodel[label]"
+        flat
+        filled
+        dense
+        auto-grow />
     </v-sheet>
+    <v-btn @click="loadFromFieldsAndUpdate"
+           color="success">
+      Update
+    </v-btn>
   </v-container>
 </template>
 <script>
@@ -34,7 +37,8 @@ export default {
   data () {
     return {
       collectionId: this.$route.params.collection,
-      apiId: this.$route.params.api
+      apiId: this.$route.params.api,
+      apimodel: {}
     }
   },
   computed: {
@@ -50,12 +54,13 @@ export default {
       return this.collectionById(this.collectionId)
     },
     keys () {
-      return Object.keys(this.api)
+      return Object.keys(this.apimodel)
     },
     valueFor () {
       return (key) => {
         const apiVal = this.api[key]
         const value = { value: apiVal, rows: 1 }
+        // this.apimodel[key] = apiVal
         if (Array.isArray(apiVal) || !apiVal.toUpperCase) {
           return {
             value: JSON.stringify(apiVal, null, 2)
@@ -65,6 +70,25 @@ export default {
       }
     }
   },
+  watch: {
+    api: {
+      handler (value) {
+        const modelValues = Object.entries(value)
+          .filter(([key]) => { return key !== '__v' && key !== '_id' })
+          .reduce((acc, [key, value]) => {
+            if (Array.isArray(value) || !value.toUpperCase) {
+              acc[key] = JSON.stringify(value, null, 2)
+            } else {
+              acc[key] = value
+            }
+
+            return acc
+          }, {})
+        this.apimodel = { ...modelValues }
+      },
+      immediate: true
+    }
+  },
   async fetch ({ store, params }) {
     await store.dispatch('collections/' + collectionActions.FETCH_COLLECTION_BY_ID, params.collection)
     await store.dispatch('api/' + actionTypes.FETCH_API_BY_ID, params.api)
@@ -72,19 +96,29 @@ export default {
   mounted () {
     this.setCrumbs([
       { label: this.$t('nav.home'), route: { name: 'index' } },
-      { label: this.collection?.name, route: { name: 'collections-collection', params: { collection: this.collectionId } } },
-      { label: this.api?.name }
+      { label: this.collection ? this.collection.name : '', route: { name: 'collections-collection', params: { collection: this.collectionId } } },
+      { label: this.api ? this.api.name : '' }
     ])
   },
   beforeDestroy () {
     this.clear()
   },
   methods: {
-    ...mapActions('api', { fetchData: actionTypes.FETCH_API_DATA }),
+    ...mapActions('api', { fetchData: actionTypes.FETCH_API_DATA, updateApi: actionTypes.UPDATE_API }),
     ...mapMutations('api', { clear: mutationTypes.CLEAR_SELECTION }),
-    loadData () {
-      this.fetchData(this.apiId)
+    async loadFromFieldsAndUpdate () {
+      const modelValues = Object.entries(this.apimodel).reduce((acc, [key, value]) => {
+        try {
+          acc[key] = JSON.parse(value)
+        } catch {
+          acc[key] = value
+        }
+        return acc
+      }, {})
+      await this.updateApi({ _id: this.apiId, ...modelValues })
+      this.$router.go(this.$router.currentRoute)
     }
   }
+
 }
 </script>

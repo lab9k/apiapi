@@ -116,5 +116,6 @@ module.exports = {
         })
       }
     }
-  }
+  },
+  telemetry: false
 }

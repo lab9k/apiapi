@@ -23,6 +23,21 @@ export default {
       return null
     }
   },
+  async [actionTypes.UPDATE_API] ({ commit }, api) {
+    const url = `${process.env.baseUrl}/api/api/${api._id}`
+    try {
+      const response = await fetch(url, {
+        method: 'PUT',
+        body: JSON.stringify(api),
+        headers: {
+          Accept: 'application/json, text/plain, */*',
+          'Content-Type': 'application/json'
+        } })
+      return await response.json()
+    } catch (e) {
+      return null
+    }
+  },
   async [actionTypes.FETCH_API_DATA] ({ commit }, { _id }) {
     const url = `${process.env.baseUrl}/api/data/raw/${_id}`
     const response = await fetch(url)
