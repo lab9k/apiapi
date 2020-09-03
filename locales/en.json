@@ -74,5 +74,8 @@
     "hint": "Hint",
     "default": "Default value",
     "path": "path"
+  },
+  "uploads": {
+    "add": "Upload a file"
   }
 }

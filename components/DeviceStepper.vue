@@ -78,7 +78,7 @@ export default {
   computed: {
     ...mapGetters({ selected_data: 'api/' + getterTypes.SELECTED_API_DATA }),
     steps () {
-      return this.model.paths.concat({ path: 'meta' })
+      return this.model.paths
     }
   },
   methods: {

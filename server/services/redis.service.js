@@ -22,7 +22,9 @@ class RedisClient {
           url: process.env.REDIS_URL
         }
       }
-      this.client = redis.createClient(redisOptions)
+      if (process.env.NODE_ENV !== 'development') {
+        this.client = redis.createClient(redisOptions)
+      }
     } catch (e) {
       this.client = null
       console.error(e)

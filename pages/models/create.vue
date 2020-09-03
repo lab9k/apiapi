@@ -62,20 +62,16 @@ export default {
   data () {
     return {
       model: {
-        'id': 1,
-        'reference': 'VLK1B',
-        'application': 'Sensor',
-        'types': [
-          {
-            'name': 'People',
-            'application': 'Cats',
-            'description': ''
-          }
-        ],
-        'categories': ['Sensor'],
-        'longitude': 3.70557,
-        'latitude': 51.0507,
-        'organisation': "Jef's house"
+        'id': '102e6ee90544a3d00943de5fa7b9b3c094e95a12',
+        'title': 'Real Time data MUV Monitoring Stations',
+        'category': 'Sensor',
+        'type': 'Meteo',
+        'dataowner': 'Stad Gent - Dienst Data & Informatie',
+        'dataprocessing': '',
+        'link': '',
+        'retention': '2 weken',
+        'longitude': 3.704006,
+        'latitude': 51.050938
       },
       dataPaths: [],
       modelName: '',

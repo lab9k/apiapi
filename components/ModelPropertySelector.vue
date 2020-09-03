@@ -23,7 +23,7 @@
 
 <script>
 import defaults from 'lodash/defaults'
-import { getPaths } from '../util/paths'
+import { getPaths } from '@/util/paths'
 
 export default {
   name: 'ModelPropertySelector',

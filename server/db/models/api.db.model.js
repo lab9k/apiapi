@@ -8,51 +8,6 @@ const PATH_TYPES = {
   CONSTANT: 'constant'
 }
 
-// const defaultPathValue = {
-//   id: {
-//     type: PATH_TYPES.PATH,
-//     value: ''
-//   },
-//   organization: {
-//     type: PATH_TYPES.PATH,
-//     value: ''
-//   },
-//   reference: {
-//     type: PATH_TYPES.PATH,
-//     value: ''
-//   },
-//   application: {
-//     type: PATH_TYPES.PATH,
-//     value: ''
-//   },
-//   types: {
-//     type: PATH_TYPES.CONSTANT,
-//     value: [
-//       {
-//         name: '',
-//         application: '',
-//         description: ''
-//       }
-//     ]
-//   },
-//   categories: {
-//     type: PATH_TYPES.CONSTANT,
-//     value: ['']
-//   },
-//   longitude: {
-//     type: PATH_TYPES.PATH,
-//     value: ''
-//   },
-//   latitude: {
-//     type: PATH_TYPES.PATH,
-//     value: ''
-//   },
-//   meta: {
-//     type: PATH_TYPES.PATH,
-//     value: ''
-//   }
-// }
-
 module.exports.PATH_TYPES = PATH_TYPES
 
 const ApiSchema = new mongoose.Schema({
@@ -130,6 +85,7 @@ ApiSchema.methods.invoke = function invokeApi (model) {
         // should be mapped to an object which paths come from model
 
         return this.paths.reduce((acc, { toPath: pathName, value: pathValue, type: pathType }) => {
+          console.log(`${pathName}, ${pathValue}, ${pathType}`)
           if (pathType === PATH_TYPES.CONSTANT) {
             setProp(acc, pathName, pathValue)
           } else if (pathType === PATH_TYPES.PATH) {

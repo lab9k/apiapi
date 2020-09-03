@@ -20,6 +20,10 @@
     </v-container>
     <v-card-actions>
       <v-spacer />
+      <v-btn :to="{name:'collections-collection-uploads-create', params: { collection: collectionId }}"
+             text>
+        <v-icon>mdi-plus</v-icon><span v-t="'uploads.add'" />
+      </v-btn>
       <v-btn :to="{name:'collections-collection-apis-create', params: { collection: collectionId }}"
              text>
         <v-icon>mdi-plus</v-icon> <span v-t="'apis.add'" />
