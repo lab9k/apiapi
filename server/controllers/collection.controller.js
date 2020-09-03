@@ -12,6 +12,7 @@ module.exports = {
     return CollectionModel.findById(id)
       .populate('apis')
       .populate('model')
+      .populate('uploads')
       .exec()
       .then(result => res.json(result))
       .catch(err => next(err))

@@ -42,7 +42,7 @@ UploadSchema.methods.invoke = function invokeUpload () {
     }
 
     const mappedData = this.data.map((entry) => {
-      return this.paths.reduce((acc, { toPath, fromHeader, pathType, constValue }) => {
+      const mappedEntry = this.paths.reduce((acc, { toPath, fromHeader, pathType, constValue }) => {
         if (pathType === PATH_TYPES.CONSTANT) {
           setProp(acc, toPath, constValue)
         } else if (pathType === PATH_TYPES.PATH) {
@@ -50,7 +50,14 @@ UploadSchema.methods.invoke = function invokeUpload () {
         }
 
         return acc
-      })
+      }, {})
+      console.log('mapping entry')
+      console.log('-------------')
+      console.log(entry)
+      console.log('-------------')
+      console.log(mappedEntry)
+      console.log('-------------')
+      return mappedEntry
     })
     RedisService.setData(this._id, JSON.stringify(mappedData))
     return mappedData

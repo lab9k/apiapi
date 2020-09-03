@@ -3,6 +3,6 @@ const UploadsController = require('../controllers/upload.controller')
 
 const router = express.Router()
 
-router.post('/', UploadsController.createOne)
+router.post('/:id', UploadsController.createOne)
 
 module.exports = router

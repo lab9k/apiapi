@@ -6,7 +6,8 @@
     <v-row>
       <v-col lg="8">
         <api-list :collection-id="collection._id"
-                  :apis="collection.apis" />
+                  :apis="collection.apis"
+                  :uploads="collection.uploads" />
       </v-col>
     </v-row>
   </v-container>

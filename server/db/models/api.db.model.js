@@ -85,7 +85,6 @@ ApiSchema.methods.invoke = function invokeApi (model) {
         // should be mapped to an object which paths come from model
 
         return this.paths.reduce((acc, { toPath: pathName, value: pathValue, type: pathType }) => {
-          console.log(`${pathName}, ${pathValue}, ${pathType}`)
           if (pathType === PATH_TYPES.CONSTANT) {
             setProp(acc, pathName, pathValue)
           } else if (pathType === PATH_TYPES.PATH) {
