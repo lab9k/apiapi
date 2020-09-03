@@ -36,7 +36,7 @@ const UploadSchema = mongoose.Schema({
 })
 
 UploadSchema.methods.invoke = function invokeUpload () {
-  return RedisService.getData(this._id).then((cachedResponse) => {
+  return RedisService.getData(`${this._id}`).then((cachedResponse) => {
     if (cachedResponse) {
       return JSON.parse(cachedResponse)
     }
@@ -59,7 +59,7 @@ UploadSchema.methods.invoke = function invokeUpload () {
       console.log('-------------')
       return mappedEntry
     })
-    RedisService.setData(this._id, JSON.stringify(mappedData))
+    RedisService.setData(`${this._id}`, JSON.stringify(mappedData))
     return mappedData
   })
 }
