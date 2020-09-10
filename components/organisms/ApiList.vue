@@ -34,15 +34,10 @@
           <v-card>
             <v-card-title v-text="upload.name"
                           class="headline" />
-            <v-card-text>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium, labore
-                perferendis?
-              </p>
-            </v-card-text>
+            <v-card-text />
             <v-card-actions>
-              <v-btn color="error"
-                     outlined>
+              <v-btn @click="deleteUpload(upload)"
+                     color="error" outlined>
                 delete upload
               </v-btn>
             </v-card-actions>
@@ -81,6 +76,13 @@ export default {
     uploads: {
       required: true,
       type: Array
+    }
+  },
+  methods: {
+    deleteUpload (upload) {
+      this.$axios.$delete(`${process.env.baseUrl}/api/uploads/${upload._id}`).then(() => {
+        this.$router.go()
+      })
     }
   }
 }
