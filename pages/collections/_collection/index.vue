@@ -4,7 +4,7 @@
         class="mb-5" />
     <p v-text="collection.description" />
     <p>
-      This collection maps to <router-link :to="{ name: 'collections-collection', params:{collection:collection._id} }">
+      This collection maps to <router-link :to="{ name: 'models-model', params: { model: collection.model._id } }">
         {{ collection.model.name }}
       </router-link>
     </p>
