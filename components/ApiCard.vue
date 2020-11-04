@@ -4,8 +4,7 @@
                   class="headline" />
     <v-card-text>
       <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium, labore
-        perferendis?
+        {{ api.name }}
       </p>
     </v-card-text>
     <v-card-actions>
